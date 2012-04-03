@@ -11,11 +11,11 @@ function startup()
 	$dbName = DB_NAME;
 	
 	// Языковая настройка.
-	setlocale(LC_ALL, 'ru_RU.CP1251');	
+	setlocale(LC_ALL, 'ru_RU.UTF-8');	
 	
 	// Подключение к БД.
 	$conn = mysql_connect($hostname, $username, $password) or die('No connect with data base'); 
-	mysql_query('SET NAMES cp1251');
+	mysql_query('SET NAMES utf-8');
 	mysql_select_db($dbName, $conn) or die('No data base');
 
 	// Открытие сессии.
