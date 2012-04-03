@@ -1,6 +1,6 @@
 <?php
 
-include "config.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/config/config.php";
 
 function startup()
 {
