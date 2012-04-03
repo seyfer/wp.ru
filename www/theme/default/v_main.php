@@ -16,7 +16,7 @@ $site_theme - текущая тема
 <body>
     <div class="main">
         <div id="logo">
-	<img src="theme/<?=$site_theme?>/wg.png" />
+            <a href="<?=$site_root_path;?>"><img src="theme/<?=$site_theme?>/wg.png" /></a>
         </div>
 	
         <div class="menu">
