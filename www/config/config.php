@@ -1,6 +1,6 @@
 <?php
 
-//íàñòðîéêè ïîäêëþ÷åíèÿ
+//Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ
 define (DB_NAME, 'course_wp');
 define (DB_HOST, 'localhost');
 define (DB_USER, 'course_user1');

@@ -4,28 +4,28 @@ include $_SERVER['DOCUMENT_ROOT'] . "/config/config.php";
 
 function startup()
 {
-	// Íàñòðîéêè ïîäêëþ÷åíèÿ ê ÁÄ.
+	// ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ Ðº Ð‘Ð”.
 	$hostname = DB_HOST; 
 	$username = DB_USER; 
 	$password = DB_PSWD;
 	$dbName = DB_NAME;
 	
-	// ßçûêîâàÿ íàñòðîéêà.
+	// Ð¯Ð·Ñ‹ÐºÐ¾Ð²Ð°Ñ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ°.
 	setlocale(LC_ALL, 'ru_RU.UTF-8');	
 	
-	// Ïîäêëþ÷åíèå ê ÁÄ.
+	// ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº Ð‘Ð”.
 	$conn = mysql_connect($hostname, $username, $password) or die('No connect with data base'); 
 	mysql_query('SET NAMES utf-8');
 	mysql_select_db($dbName, $conn) or die('No data base');
 
-	// Îòêðûòèå ñåññèè.
+	// ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ ÑÐµÑÑÐ¸Ð¸.
 	session_start();
 		
 }
 
 function view_include($fileName, $params = array()) {
     
-    //ñîçäàþòñÿ ïåðåìåííûå ñ íàçâàíèåì ÊÅÉ è çíà÷åíèåì ÂÀË
+    //ÑÐ¾Ð·Ð´Ð°ÑŽÑ‚ÑÑ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ðµ Ñ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸ÐµÐ¼ ÐšÐ•Ð™ Ð¸ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÐµÐ¼ Ð’ÐÐ›
     foreach ($params as $key => $val) {
         $$key = $val;
     }

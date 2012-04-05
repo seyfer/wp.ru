@@ -1,29 +1,29 @@
 <? /*
-  Шаблон главной страницы
+  РЁР°Р±Р»РѕРЅ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹
   =======================
-  $title - заголовок
-  $content - содержание
+  $title - Р·Р°РіРѕР»РѕРІРѕРє
+  $content - СЃРѕРґРµСЂР¶Р°РЅРёРµ
  */ ?>
 
 
-<h1>Редактировать статью</h1>
+<h1>Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ СЃС‚Р°С‚СЊСЋ</h1>
 
 <? if ($success) : ?>
-    <b>Успешно обновлена</b>
+    <b>РЈСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅР°</b>
 <? endif; ?>
 
 <form method="post" action="edit.php?id=<?= $id ?>">
-    Название:
+    РќР°Р·РІР°РЅРёРµ:
     <br/>
     <input type="text" name="title" value="<?= $ar_title ?>" />
     <br/>
     <br/>
-    Содержание:
+    РЎРѕРґРµСЂР¶Р°РЅРёРµ:
     <br/>
     <textarea name="content"><?= $ar_content ?></textarea>
     <br/>
     <input type="hidden" name="id" value="<?= $id ?>" />
-    <input type="submit" name ="edit" value="Применить" />
-    <input type="submit" name ="delete" value="Удалить" style="margin-left: 40px;"/>
+    <input type="submit" name ="edit" value="РџСЂРёРјРµРЅРёС‚СЊ" />
+    <input type="submit" name ="delete" value="РЈРґР°Р»РёС‚СЊ" style="margin-left: 40px;"/>
 </form>
 

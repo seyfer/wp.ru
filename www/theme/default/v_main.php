@@ -1,9 +1,9 @@
 <?/*
-Шаблон главной страницы
+РЁР°Р±Р»РѕРЅ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹
 =======================
-$title - заголовок
-$content - содержание
-$site_theme - текущая тема
+$title - Р·Р°РіРѕР»РѕРІРѕРє
+$content - СЃРѕРґРµСЂР¶Р°РЅРёРµ
+$site_theme - С‚РµРєСѓС‰Р°СЏ С‚РµРјР°
 */?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -20,8 +20,8 @@ $site_theme - текущая тема
         </div>
 	
         <div class="menu">
-        <a href="index.php">Главная</a> |
-<a href="editor.php">Консоль редактора</a>
+        <a href="index.php">Р“Р»Р°РІРЅР°СЏ</a> |
+<a href="editor.php">РљРѕРЅСЃРѕР»СЊ СЂРµРґР°РєС‚РѕСЂР°</a>
 </div>
         <div class="content">
         <?=$content?>
@@ -29,7 +29,7 @@ $site_theme - текущая тема
 </div>
         
         
-    <p id="copyright"><a href="http://prog-school.ru">Школа Программирования</a> &copy;</p>
+    <p id="copyright"><a href="http://prog-school.ru">РЁРєРѕР»Р° РџСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ</a> &copy;</p>
         
 </body>
 </html>

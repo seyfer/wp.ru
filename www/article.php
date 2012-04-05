@@ -3,16 +3,16 @@
 include_once('models/startup.php');
 include_once('models/article.php');
 
-// Установка параметров, подключение к БД, запуск сессии.
+// РЈСЃС‚Р°РЅРѕРІРєР° РїР°СЂР°РјРµС‚СЂРѕРІ, РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”, Р·Р°РїСѓСЃРє СЃРµСЃСЃРёРё.
 startup();
 
 $article = articles_get($_GET['id']);
-$title = 'Статья - ' . $article['title'];
+$title = 'РЎС‚Р°С‚СЊСЏ - ' . $article['title'];
 
-// Кодировка.
+// РљРѕРґРёСЂРѕРІРєР°.
 header('Content-type: text/html; charset=windows-1251');
 
-// Вывод в шаблон.
+// Р’С‹РІРѕРґ РІ С€Р°Р±Р»РѕРЅ.
 //include('theme/default/v_article.php');
 
 $content = view_include('v_article.php', 
