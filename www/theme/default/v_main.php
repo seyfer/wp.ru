@@ -10,7 +10,7 @@ $site_theme - текущая тема
 <html>
 <head>
 	<title><?=$title?></title>
-	<meta content="text/html; charset=Windows-1251" http-equiv="content-type">	
+	<meta content="text/html; charset=utf-8" http-equiv="content-type">	
 	<link rel="stylesheet" type="text/css" media="screen" href="theme/<?=$site_theme?>/style.css" /> 
 </head>
 <body>

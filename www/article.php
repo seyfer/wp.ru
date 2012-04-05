@@ -9,12 +9,6 @@ startup();
 $article = articles_get($_GET['id']);
 $title = 'Статья - ' . $article['title'];
 
-// Кодировка.
-header('Content-type: text/html; charset=windows-1251');
-
-// Вывод в шаблон.
-//include('theme/default/v_article.php');
-
 $content = view_include('v_article.php', 
         array(
             'article' => $article,
@@ -29,5 +23,5 @@ echo view_include('v_main.php',
             'site_root_path' => $site_root_path
             ));
 
-mysql_close();
+
 ?>
