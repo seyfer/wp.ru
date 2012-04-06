@@ -35,13 +35,32 @@ class PdoDB {
     static public function query ($sql) {
         
         $p_inst = self::getPdoInstance();
-        return $p_inst->query($sql);
+        if ($stmt = $p_inst->query($sql))
+        {
+            return $stmt;
+        }
+        else {
+            $pdo_err = $p_inst->errorInfo();
+            throw new PDOException($pdo_err[2]);
+        }
     }
     
     static public function exec ($sql) {
         
         $p_inst = self::getPdoInstance();
-        return $p_inst->exec($sql);
+        $row_aff_cnt = $p_inst->exec($sql);
+        
+        //????
+        if ($row_aff_cnt >= 0)
+        {
+            echo $row_aff_cnt;
+            return $row_aff_cnt;
+        }
+        else
+        {         
+            $pdo_err = $p_inst->errorInfo();
+            throw new PDOException($pdo_err[2]);
+        }
     }
 }
 
