@@ -14,6 +14,11 @@ function startup() {
     $db_user = DB_USER;
     $db_passw = DB_PSWD;
     $db_name = DB_NAME;
+    
+    //какие ошибки
+    ini_set('error_reporting', E_ALL ^ E_NOTICE);
+    //показывать или нет
+    ini_set('display_errors', 1);
 
     // Языковая настройка.
     setlocale(LC_ALL, 'ru_RU.UTF-8');    
