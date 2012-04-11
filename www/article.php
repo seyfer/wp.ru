@@ -3,19 +3,22 @@
 include_once('models/startup.php');
 include_once('models/article.php');
 
-// Установка параметров, подключение к БД, запуск сессии.
-startup();
+$base = new Base();
+// запуск сессии.
+$base->startup();
 
-$article = articles_get($_GET['id']);
+$art = new Articles();
+
+$article = $art->articles_get($_GET['id']);
 $title = 'Статья - ' . $article['title'];
 
-$content = view_include('v_article.php', 
+$content = $base->view_include('v_article.php', 
         array(
             'article' => $article,
             'site_theme' => $site_theme
             ));
 
-echo view_include('v_main.php', 
+echo $base->view_include('v_main.php', 
         array(
             'content' => $content,
             'title' => $title,
