@@ -28,6 +28,7 @@ class PdoDB {
             self::$pdo_instance = new PDO ($connect, $db_user, $db_passw );
             self::$pdo_instance->exec("SET CHARACTER SET utf8");
             self::$pdo_instance->exec("SET NAMES utf8");
+            
         }
         
         return self::$pdo_instance;    
@@ -62,6 +63,19 @@ class PdoDB {
         {   
             //кол-во изменененных строк
             return $row_aff_cnt;
+        }
+    }
+    
+    static public function prepare ($sql) {
+        $p_inst = self::getPdoInstance();
+        if ($stmt = $p_inst->prepare($sql))
+        {
+            //возвращаем стейтмент
+            return $stmt;
+        }
+        else {
+            $pdo_err = $p_inst->errorInfo();
+            throw new PDOException($pdo_err[2]);
         }
     }
 }
