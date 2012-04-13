@@ -5,9 +5,10 @@
  *
  * @author Seyfer
  */
-class Controller {
+class Controller {  
     
-   //
+
+    //
     // Конструктор.
     //
     function __construct() {
@@ -59,8 +60,9 @@ class Controller {
         }
 
         ob_start();
-        include "Theme/" . $this->site_theme . "/" . $fileName;
+        require 'theme/' . $this->site_theme . '/' . $fileName;        
         return ob_get_clean();
+        
     }
 }
 

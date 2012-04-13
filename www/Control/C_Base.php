@@ -6,25 +6,31 @@
  *
  * @author Seyfer
  */
+require_once '/core/controller.php';
 
 abstract class C_Base extends Controller {
 
     protected $id_article;      // идентификатор статьи
-    protected $title;		// заголовок статьи
-    protected $content;		// содержание статьи
-    protected $start_time;	// время начала генерации страницы
+    protected $title;  // заголовок статьи
+    protected $content;  // содержание статьи
+    protected $start_time; // время начала генерации страницы
+    protected $site_theme;   
 
     //
     // Конструктор.
     //
-    function __construct() {
+    function __construct($site_theme) {
+        
+        $this->site_theme = $site_theme; 
+        
     }
 
-  
     //
     // Виртуальный обработчик запроса.
     //
     protected function OnInput() {
+        
+        
         $this->start_time = microtime();
         $this->title = 'Веб Гуру';
         $this->content = '';
@@ -37,11 +43,13 @@ abstract class C_Base extends Controller {
         $vars = array(
             'title' => $this->title,
             'content' => $this->content,
-            'site_name'=> SITE_NAME,
-            'site_tmp'=>SITE_TMP);
+            'site_name' => SITE_NAME,
+            'site_theme' => $this->site_theme);
         
-        $page = $this->View('main', $vars);
-        
+        echo $site_root_path;
+
+        $page = $this->view_include('v_main.php', $vars);
+
         // Время генерации страницы
         $time_gen = microtime() - $this->start_time;
         $page .= "<!-- Время генерации страницы: $time_gen сек.-->
@@ -62,16 +70,17 @@ abstract class C_Base extends Controller {
         //Вывод общей длины всех символов плюс конечный текст
         $page .= ($size_num + $size_text) . $final_text;
         echo $page;
-
     }
-	
+
     //
     // Подключение шаблона.
     //
-    protected function View($fileName, $vars = array()) {
-	
-		parent::View('views/'.SITE_TMP.'/'.$fileName, $vars);
-    }	
+    public function view_include($fileName, $vars = array()) {
+
+        $this->content = parent::view_include($fileName, $vars);
+        return $this->content;
+    }
+
 }
 
 ?>
