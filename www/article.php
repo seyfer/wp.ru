@@ -14,16 +14,15 @@ $title = 'Статья - ' . $article['title'];
 
 $content = $base->view_include('v_article.php', 
         array(
-            'article' => $article,
-            'site_theme' => $site_theme
+            'article' => $article            
             ));
 
 echo $base->view_include('v_main.php', 
         array(
             'content' => $content,
             'title' => $title,
-            'site_theme' => $site_theme,
-            'site_root_path' => $site_root_path
+            'site_theme' => $base->site_theme,
+            'site_root_path' => $base->site_root_path
             ));
 
 

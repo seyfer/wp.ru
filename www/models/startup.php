@@ -1,21 +1,28 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . "/config/config.php";
-
 class Base {
 
-    function startup() {
+    private $db_host = "";
+    private $db_user = "";
+    private $db_passw = "";
+    private $db_name = "";
+    public $site_theme = "";
+    public $site_root_path = "";
 
-        global $db_host;
-        global $db_user;
-        global $db_passw;
-        global $db_name;
+    function __construct() {
 
-        //Настройки подключения к БД.
-        $db_host = DB_HOST;
-        $db_user = DB_USER;
-        $db_passw = DB_PSWD;
-        $db_name = DB_NAME;
+        include $_SERVER['DOCUMENT_ROOT'] . "/config/config.php";        
+
+        $this->db_host = $db_host;
+        $this->db_user = $db_user;
+        $this->db_passw = $db_passw;
+        $this->db_name = $db_name;
+
+        $this->site_theme = $site_theme;
+        $this->site_root_path = $site_root_path;
+    }
+
+    public function startup() {
 
         //какие ошибки
         ini_set('error_reporting', E_ALL ^ E_NOTICE);
@@ -29,7 +36,7 @@ class Base {
         session_start();
     }
 
-    function view_include($fileName, $params = array()) {
+    public function view_include($fileName, $params = array()) {
 
         //создаются переменные с названием КЕЙ и значением ВАЛ
         foreach ($params as $key => $val) {
@@ -37,7 +44,7 @@ class Base {
         }
 
         ob_start();
-        include "theme/" . $site_theme . "/" . $fileName;
+        include "theme/" . $this->site_theme . "/" . $fileName;
         return ob_get_clean();
     }
 
