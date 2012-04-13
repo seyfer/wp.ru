@@ -14,7 +14,7 @@
 
     <? foreach ($articles as $article): ?>
         <li>
-            <a href="article.php?id=<?= $article['id_article'] ?>">
+            <a href="index.php?c=C_Article&id=<?= $article['id_article'] ?>">
                 <?= $article['title'] ?>
             </a>
             <p>
