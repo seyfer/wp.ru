@@ -6,7 +6,7 @@
  * @author Admin
  */
 require_once '/control/C_Base.php';
-require_once '/models/m_article.php';
+require_once '/model/m_article.php';
 
 class C_Index extends C_Base {
 

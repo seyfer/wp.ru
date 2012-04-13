@@ -1,1 +1,22 @@
-<?include_once('models/m_startup.php');include_once('models/m_article.php');$base = new Base();// запуск сессии.$base->startup();$art = new Articles();$articles = $art->articles_all();$intros = $art->articles_intro($articles);$title = "Главная";$content = $base->view_include('v_index.php', array(    'articles' => $articles,    'intros' => $intros        ));echo $base->view_include('v_main.php', array(    'content' => $content,    'title' => $title,    'site_theme' => $base->site_theme,    'site_root_path' => $base->site_root_path));?>
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+require_once('model/m_startup.php');
+require_once('model/m_article.php');
+
+$base = new Base();
+// запуск сессии.
+$base->startup();
+
+$controller = ($_GET['c'] != '') ? $_GET['c'] : 'C_Index';
+include "/control/article/$controller.php";
+
+$controller = new $controller($base->site_theme);
+
+$controller->Request();
+
+?>

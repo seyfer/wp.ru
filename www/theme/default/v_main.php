@@ -22,8 +22,8 @@
             </div>
 
             <div class="menu">
-                <a href="index.php">Главная</a> |
-                <a href="editor.php">Консоль редактора</a>
+                <a href="index.php?c=C_Index">Главная</a> |
+                <a href="index.php?c=C_Editor">Консоль редактора</a>
             </div>
             <div class="content">
                 <?= $content ?>

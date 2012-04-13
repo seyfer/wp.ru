@@ -13,7 +13,8 @@
 <ul>	
 
     <? if ($_GET['id']) : ?>
-        <p><?= $article['title'] ?></p>
+    <h3><?= $article['title'] ?></h3>
+    <br>
         <?= $article['content'] ?>
         <br>                       
     <? endif ?>

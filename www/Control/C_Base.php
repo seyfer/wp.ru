@@ -28,8 +28,7 @@ abstract class C_Base extends Controller {
     //
     // Виртуальный обработчик запроса.
     //
-    protected function OnInput() {
-        
+    protected function OnInput() {        
         
         $this->start_time = microtime();
         $this->title = 'Веб Гуру';
