@@ -11,7 +11,7 @@ class Base {
 
     function __construct() {
 
-        include $_SERVER['DOCUMENT_ROOT'] . "/config/config.php";        
+        include $_SERVER['DOCUMENT_ROOT'] . "/config/site_conf.php";        
 
         $this->db_host = $db_host;
         $this->db_user = $db_user;
@@ -44,7 +44,7 @@ class Base {
         }
 
         ob_start();
-        include "theme/" . $this->site_theme . "/" . $fileName;
+        include "Theme/" . $this->site_theme . "/" . $fileName;
         return ob_get_clean();
     }
 

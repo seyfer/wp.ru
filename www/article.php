@@ -1,7 +1,7 @@
 <?
 
-include_once('models/startup.php');
-include_once('models/article.php');
+include_once('models/m_startup.php');
+include_once('models/m_article.php');
 
 $base = new Base();
 // запуск сессии.
