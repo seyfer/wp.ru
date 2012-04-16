@@ -33,7 +33,7 @@ class C_Edit extends C_Base {
             if ($_POST['edit']) {
 
                 $this->id_article = $_POST['id_article'];
-                $this->title = $_POST['title'];
+                $this->title = $this->title . $_POST['title'];
                 $this->content = $_POST['content'];
 
                 if ($art->articles_edit($this->id_article, $this->title, $this->content)) {
@@ -44,7 +44,11 @@ class C_Edit extends C_Base {
             if ($_POST['delete']) {
 
                 $this->id_article = $_POST['id_article'];
-                $art->articles_delete($this->id_article);
+                if ($art->articles_delete($this->id_article)) {
+                    header('Location:index.php?c=C_Editor');
+                    exit;
+                }
+                
             }
         } elseif ($this->IsGet()) {
             $art = new Articles();

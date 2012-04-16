@@ -31,7 +31,7 @@ abstract class C_Base extends Controller {
     protected function OnInput() {        
         
         $this->start_time = microtime();
-        $this->title = 'Веб Гуру';
+        $this->title = 'Веб Гуру::';
         $this->content = '';
     }
 

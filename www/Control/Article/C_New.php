@@ -11,6 +11,8 @@ class C_New extends C_Base {
 
     private $articles;
     private $message;
+    private $ar_title;
+    private $ar_content;
 
     function __construct($site_theme) {
         parent::__construct($site_theme);
@@ -18,15 +20,17 @@ class C_New extends C_Base {
 
     function OnInput() {
         parent::OnInput();
+        
+        $this->title = $this->title . "Новая статья";
 
         if ($this->IsPost()) {            
 
-            $this->title = $_POST['title'];
-            $this->content = $_POST['content'];
+            $this->ar_title = $_POST['title'];
+            $this->ar_content = $_POST['content'];           
             
             $art = new Articles();
 
-            if ($art->articles_new($this->title, $this->content)) {
+            if ($art->articles_new($this->ar_title, $this->ar_content)) {
                 
                 header('Location: index.php?c=C_Editor');
 		die();                
@@ -35,8 +39,8 @@ class C_New extends C_Base {
                 $this->message = 'error';
             }
         } else {
-            $this->title = '';
-            $this->content = '';
+            $this->ar_title = '';
+            $this->ar_content = '';
 
             $art = new Articles();
         }
@@ -46,8 +50,8 @@ class C_New extends C_Base {
 
 
         $this->content = parent::view_include('v_new.php', array(
-                    'title' => $this->title,
-                    'content' => $this->content,
+                    'title' => $this->ar_title,
+                    'content' => $this->ar_content,
                     'message' => $this->message
                 ));
 

@@ -28,6 +28,7 @@ class C_Editor extends C_Base {
         $art = new Articles();
         // Извлечение статей.
         $this->articles = $art->articles_all();
+        $this->title = $this->title . "Редактирование";
     }
     
       //
