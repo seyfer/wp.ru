@@ -6,7 +6,6 @@
  * @author Admin
  */
 require_once '/control/C_Base.php';
-require_once '/model/m_article.php';
 
 class C_Index extends C_Base {
 
@@ -26,7 +25,7 @@ class C_Index extends C_Base {
     protected function OnInput() {
         parent::OnInput();        
 
-        $art = new Articles();
+        $art = new M_Articles();
         // Извлечение статей.
         $this->articles = $art->articles_all();
         $this->intros = $art->articles_intro($this->articles);

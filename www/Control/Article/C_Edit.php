@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of C_Edit
  *
@@ -28,7 +23,7 @@ class C_Edit extends C_Base {
 
         if ($this->IsPost()) {
 
-            $art = new Articles;
+            $art = new M_Articles();
 
             if ($_POST['edit']) {
 
@@ -51,7 +46,7 @@ class C_Edit extends C_Base {
                 
             }
         } elseif ($this->IsGet()) {
-            $art = new Articles();
+            $art = new M_Articles();
             $this->id_article = $_GET['id'];
 
             $this->articles = $art->articles_get($this->id_article);
@@ -59,7 +54,9 @@ class C_Edit extends C_Base {
             $this->title = $this->articles['title'];
             $this->content = $this->articles['content'];
         } else {
-            
+            $this->title = "";
+            $this->content = "";
+            $this->id_article = "";
         }
     }
 

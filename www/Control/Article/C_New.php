@@ -28,7 +28,7 @@ class C_New extends C_Base {
             $this->ar_title = $_POST['title'];
             $this->ar_content = $_POST['content'];           
             
-            $art = new Articles();
+            $art = new M_Articles();
 
             if ($art->articles_new($this->ar_title, $this->ar_content)) {
                 
@@ -40,9 +40,7 @@ class C_New extends C_Base {
             }
         } else {
             $this->ar_title = '';
-            $this->ar_content = '';
-
-            $art = new Articles();
+            $this->ar_content = '';            
         }
     }
 

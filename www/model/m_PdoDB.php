@@ -5,7 +5,7 @@
  *
  * @author Seyfer
  */
-class PdoDB {
+class M_PdoDB {
     
     static private $db_host = "";
     static private $db_user = "";

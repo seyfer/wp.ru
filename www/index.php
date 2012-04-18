@@ -1,21 +1,18 @@
 <?php
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * index - main controller
  */
 
-require_once('model/m_startup.php');
-require_once('model/m_article.php');
+require_once('model/M_Startup.php');
+require_once('model/M_Articles.php');
 
-$base = new Base();
-// запуск сессии.
-$base->startup();
+$start = M_Startup::startup();
 
 $controller = ($_GET['c'] != '') ? $_GET['c'] : 'C_Index';
 include "/control/article/$controller.php";
 
-$controller = new $controller($base->site_theme);
+$controller = new $controller($start->site_theme);
 
 $controller->Request();
 

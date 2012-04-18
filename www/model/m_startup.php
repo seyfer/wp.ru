@@ -1,6 +1,6 @@
 <?php
 
-class Base {
+class M_Startup {
 
     private $db_host = "";
     private $db_user = "";
@@ -8,6 +8,17 @@ class Base {
     private $db_name = "";
     public $site_theme = "";
     public $site_root_path = "";
+    
+    static private $instance = "";
+    
+    static public function Instance () {
+        
+        if (self::$instance == null) {
+            self::$instance = new M_Startup();
+        }
+        
+        return self::$instance;        
+    }
 
     function __construct() {
 
@@ -22,7 +33,7 @@ class Base {
         $this->site_root_path = $site_root_path;
     }
 
-    public function startup() {
+    static public function startup() {
 
         //какие ошибки
         ini_set('error_reporting', E_ALL ^ E_NOTICE);
@@ -34,18 +45,8 @@ class Base {
 
         // Открытие сессии.
         session_start();
-    }
-
-    public function view_include($fileName, $params = array()) {
-
-        //создаются переменные с названием КЕЙ и значением ВАЛ
-        foreach ($params as $key => $val) {
-            $$key = $val;
-        }
-
-        ob_start();
-        include "Theme/" . $this->site_theme . "/" . $fileName;
-        return ob_get_clean();
+        
+        return self::Instance();
     }
 
 }

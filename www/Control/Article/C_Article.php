@@ -22,7 +22,7 @@ class C_Article extends C_Base {
         if ($this->IsGet()) {
             $id = $_GET['id'];
             
-            $art = new Articles();
+            $art = new M_Articles();
             
             if ($this->article = $art->articles_get($id)) {
                 $this->title = $this->title . $this->article['title'];
