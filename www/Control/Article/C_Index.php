@@ -27,7 +27,7 @@ class C_Index extends C_Base {
 
         $art = new M_Articles();
         // Извлечение статей.
-        $this->articles = $art->articles_all();
+        $this->articles = $art->all();
         $this->intros = $art->articles_intro($this->articles);
     }
 
