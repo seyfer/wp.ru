@@ -22,7 +22,7 @@ class C_Edit extends C_Base {
 
         if ($this->IsPost()) {
 
-            $art = new M_Articles();
+            $art = M_Articles::Instance();
 
             if ($_POST['edit']) {
                 $this->page_title = $this->page_title . $_POST['title'];
@@ -52,7 +52,7 @@ class C_Edit extends C_Base {
             if ($_GET['id']) {
 
                 $this->id_article = $_GET['id'];
-                $art = new M_Articles();
+                $art = M_Articles::Instance();
                 //существует ли статья?
                 if ($this->articles = $art->get($this->id_article)) {
                     

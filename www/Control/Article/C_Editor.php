@@ -24,7 +24,7 @@ class C_Editor extends C_Base {
     protected function OnInput() {
         parent::OnInput();        
 
-        $art = new M_Articles();
+        $art = M_Articles::Instance();
         // Извлечение статей.
         $this->articles = $art->all();
         $this->title = $this->title . "Редактирование";

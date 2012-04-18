@@ -11,13 +11,15 @@
 
 
 <ul>	
+    <? if ($message) : ?>
+        <h1><?= $message ?></h1>
+    <? endif; ?>
     <? if ($_GET['id']) : ?>
         <h3><?= $article['title'] ?></h3>
         <br>
-        <?= $article['content'] ?>
-        <br>                       
+        <p>
+            <?= $article['content'] ?>
+        </p>                    
     <? endif ?>
-    <? if ($message) : ?>
-        <?= $message ?>
-    <? endif; ?>
+
 </ul>

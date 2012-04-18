@@ -28,9 +28,9 @@ class C_New extends C_Base {
             $this->ar_title = $_POST['title'];
             $this->ar_content = $_POST['content'];           
             
-            $art = new M_Articles();
+            $art = M_Articles::Instance();
 
-            if ($art->new_art($this->ar_title, $this->ar_content)) {
+            if ($art->add($this->ar_title, $this->ar_content)) {
                 
                 header('Location: index.php?c=C_Editor');
 		die();                
