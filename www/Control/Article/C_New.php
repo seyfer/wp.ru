@@ -30,7 +30,7 @@ class C_New extends C_Base {
             
             $art = new M_Articles();
 
-            if ($art->articles_new($this->ar_title, $this->ar_content)) {
+            if ($art->new_art($this->ar_title, $this->ar_content)) {
                 
                 header('Location: index.php?c=C_Editor');
 		die();                

@@ -20,11 +20,11 @@ class C_Article extends C_Base {
         parent::OnInput();
         
         if ($this->IsGet()) {
-            $id = $_GET['id'];
+            $this->id_article = $_GET['id'];
             
             $art = new M_Articles();
             
-            if ($this->article = $art->articles_get($id)) {
+            if ($this->article = $art->get($this->id_article)) {
                 $this->title = $this->title . $this->article['title'];
             }
             else {

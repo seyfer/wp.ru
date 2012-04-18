@@ -60,7 +60,7 @@ class Controller {
         }
 
         ob_start();
-        require 'theme/' . $this->site_theme . '/' . $fileName;        
+        require 'theme/' . SITE_THEME. '/' . $fileName;        
         return ob_get_clean();
         
     }

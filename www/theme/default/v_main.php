@@ -31,7 +31,9 @@
         </div>
 
 
-        <p id="copyright"><a href="http://prog-school.ru">Школа Программирования</a> &copy;</p>
+        <p id="copyright"><a href=<?=$site_root_path; ?>>
+            <?=$site_name; ?>
+            </a> &copy;</p>
 
     </body>
 </html>

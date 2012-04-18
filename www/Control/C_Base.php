@@ -11,7 +11,7 @@ require_once '/core/controller.php';
 abstract class C_Base extends Controller {
 
     protected $id_article;      // идентификатор статьи
-    protected $title;  // заголовок статьи
+    protected $page_title;  // заголовок статьи
     protected $content;  // содержание статьи
     protected $start_time; // время начала генерации страницы
     protected $site_theme;   
@@ -31,7 +31,7 @@ abstract class C_Base extends Controller {
     protected function OnInput() {        
         
         $this->start_time = microtime();
-        $this->title = 'Веб Гуру::';
+        $this->page_title = 'Веб Гуру::';
         $this->content = '';
     }
 
@@ -40,12 +40,12 @@ abstract class C_Base extends Controller {
     //
     protected function OnOutput() {
         $vars = array(
-            'title' => $this->title,
+            'title' => $this->page_title,
             'content' => $this->content,
             'site_name' => SITE_NAME,
-            'site_theme' => $this->site_theme);
-        
-        echo $site_root_path;
+            'site_theme' => SITE_THEME,
+            'site_root_path' => SITE_ROOT_PATH
+            );
 
         $page = $this->view_include('v_main.php', $vars);
 
