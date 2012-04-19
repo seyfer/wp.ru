@@ -55,7 +55,7 @@ class C_Edit extends C_Base {
                 $art = M_Articles::Instance();
                 //существует ли статья?
                 if ($this->articles = $art->get($this->id_article)) {
-                    
+                    $this->articles = $this->articles[0];
                     $this->page_title = $this->page_title . $this->articles['title'];
 
                     $this->title = $this->articles['title'];

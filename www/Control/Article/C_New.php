@@ -10,7 +10,6 @@ require_once '/control/C_Base.php';
 class C_New extends C_Base {
 
     private $articles;
-    private $message;
     private $ar_title;
     private $ar_content;
 
@@ -24,7 +23,7 @@ class C_New extends C_Base {
         $this->title = $this->title . "Новая статья";
 
         if ($this->IsPost()) {            
-
+            
             $this->ar_title = $_POST['title'];
             $this->ar_content = $_POST['content'];           
             
@@ -36,7 +35,7 @@ class C_New extends C_Base {
 		die();                
             }
             else {
-                $this->message = 'error';
+                $this->message = 'Ошибка добавления статьи!';
             }
         } else {
             $this->ar_title = '';

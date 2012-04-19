@@ -24,6 +24,8 @@ class C_Article extends C_Base {
             $art = M_Articles::Instance();
             
             if ($this->article = $art->get($this->id_article)) {
+                //вернулся массив результатов
+                $this->article = $this->article[0];
                 $this->title = $this->title . $this->article['title'];
             }
             else {
