@@ -26,13 +26,16 @@
                 <a href="index.php?c=C_Editor">Консоль редактора</a>
             </div>
             <div class="content">
+                <? if ($message) : ?>
+                    <h1><?= $message; ?></h1>
+                <? endif; ?>
                 <?= $content ?>
             </div>
         </div>
 
 
-        <p id="copyright"><a href=<?=$site_root_path; ?>>
-            <?=$site_name; ?>
+        <p id="copyright"><a href=<?= $site_root_path; ?>>
+                <?= $site_name; ?>
             </a> &copy;</p>
 
     </body>

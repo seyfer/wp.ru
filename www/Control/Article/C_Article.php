@@ -10,8 +10,7 @@ require_once '/control/C_Base.php';
 class C_Article extends C_Base {  
     
     private $article;
-    private $message;
-
+    
     function __construct($site_theme) {
         parent::__construct($site_theme);
     }
@@ -40,8 +39,7 @@ class C_Article extends C_Base {
     function OnOutput() {
         
         $this->content = parent::view_include('v_article.php', array (            
-            'article' => $this->article,
-            'message' => $this->message
+            'article' => $this->article
         ));
         
         parent::OnOutput();

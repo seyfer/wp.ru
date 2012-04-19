@@ -15,6 +15,7 @@ abstract class C_Base extends Controller {
     protected $content;  // содержание статьи
     protected $start_time; // время начала генерации страницы
     protected $site_theme;   
+    protected $message;
 
     //
     // Конструктор.
@@ -44,7 +45,8 @@ abstract class C_Base extends Controller {
             'content' => $this->content,
             'site_name' => SITE_NAME,
             'site_theme' => SITE_THEME,
-            'site_root_path' => SITE_ROOT_PATH
+            'site_root_path' => SITE_ROOT_PATH,
+            'message' => $this->message
             );
 
         $page = $this->view_include('v_main.php', $vars);

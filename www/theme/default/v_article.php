@@ -8,12 +8,9 @@
   title - заголвок
   content - текст
  */ ?>
-
-
+ 
 <ul>	
-    <? if ($message) : ?>
-        <h1><?= $message ?></h1>
-    <? endif; ?>
+   
     <? if ($_GET['id']) : ?>
         <h3><?= $article['title'] ?></h3>
         <br>

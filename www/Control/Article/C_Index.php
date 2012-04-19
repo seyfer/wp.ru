@@ -10,7 +10,7 @@ require_once '/control/C_Base.php';
 class C_Index extends C_Base {
 
     private $articles;     // массив статей
-    private $intros;    
+    private $intros;   
 
     //
     // Конструктор.
@@ -27,8 +27,13 @@ class C_Index extends C_Base {
 
         $art = M_Articles::Instance();
         // Извлечение статей.
-        $this->articles = $art->all();
-        $this->intros = $art->intro($this->articles);
+        if ($this->articles = $art->all()) {
+            $this->intros = $art->intro($this->articles);
+        }
+        else {
+            $this->message = "Ошибка выбоки статей!";
+        }
+        
     }
 
     //

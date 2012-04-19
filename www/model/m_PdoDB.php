@@ -7,6 +7,8 @@
  */
 class M_PdoDB {
     
+    //TODO: db driver
+    
     static private $db_host = "";
     static private $db_user = "";
     static private $db_passw = "";
