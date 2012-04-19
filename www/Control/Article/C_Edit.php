@@ -10,7 +10,6 @@ require_once '/control/C_Base.php';
 class C_Edit extends C_Base {
 
     private $articles;
-    private $success = false;
     private $template = 'v_edit.php';
 
     function __construct($site_theme) {
@@ -28,13 +27,13 @@ class C_Edit extends C_Base {
                 $this->page_title = $this->page_title . $_POST['title'];
 
                 $this->id_article = $_POST['id_article'];
-
                 $this->title = $_POST['title'];
-
                 $this->content = $_POST['content'];
 
                 if ($art->edit($this->id_article, $this->title, $this->content)) {
-                    $this->success = TRUE;
+                    $this->message = "Статья успешно обновлена!";
+                } else {
+                    $this->message = "Ошибка обновления статьи";
                 }
             }
 
@@ -45,6 +44,8 @@ class C_Edit extends C_Base {
                 if ($art->delete($this->id_article)) {
                     header('Location:index.php?c=C_Editor');
                     exit;
+                } else {
+                    $this->message = "Ошибка удаления статьи";
                 }
             }
         } elseif ($this->IsGet()) {
@@ -77,7 +78,6 @@ class C_Edit extends C_Base {
         $this->content = $this->view_include($this->template, array(
             'title' => $this->title,
             'content' => $this->content,
-            'success' => $this->success,
             'id_article' => $this->id_article
                 ));
 

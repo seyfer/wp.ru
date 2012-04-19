@@ -19,27 +19,26 @@ class C_New extends C_Base {
 
     function OnInput() {
         parent::OnInput();
-        
+
         $this->title = $this->title . "Новая статья";
 
-        if ($this->IsPost()) {            
-            
+        if ($this->IsPost()) {
+
             $this->ar_title = $_POST['title'];
-            $this->ar_content = $_POST['content'];           
-            
+            $this->ar_content = $_POST['content'];
+
             $art = M_Articles::Instance();
 
             if ($art->add($this->ar_title, $this->ar_content)) {
-                
+
                 header('Location: index.php?c=C_Editor');
-		die();                
-            }
-            else {
+                die();
+            } else {
                 $this->message = 'Ошибка добавления статьи!';
             }
         } else {
             $this->ar_title = '';
-            $this->ar_content = '';            
+            $this->ar_content = '';
         }
     }
 
