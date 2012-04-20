@@ -3,7 +3,7 @@
 //
 // Помощник работы с БД
 //
-require_once '/model/M_PdoDB.php';
+require_once '/core/M_PdoDB.php';
 
 class Database {
 
