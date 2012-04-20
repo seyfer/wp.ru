@@ -14,8 +14,8 @@ class C_Editor extends C_Base {
      //
     // Конструктор.
     //
-    function __construct($site_theme) {
-        parent::__construct($site_theme);
+    function __construct() {
+        parent::__construct();
     }
 
     //

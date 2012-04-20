@@ -13,17 +13,14 @@ abstract class C_Base extends Controller {
     protected $id_article;      // идентификатор статьи
     protected $page_title;  // заголовок статьи
     protected $content;  // содержание статьи
-    protected $start_time; // время начала генерации страницы
-    protected $site_theme;   
+    protected $start_time; // время начала генерации страницы    
     protected $message;
 
     //
     // Конструктор.
     //
-    function __construct($site_theme) {
-        
-        $this->site_theme = $site_theme; 
-        
+    function __construct() {       
+      
     }
 
     //

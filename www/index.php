@@ -10,10 +10,21 @@ require_once('model/M_Articles.php');
 $start = M_Startup::startup();
 
 $controller = ($_GET['c'] != '') ? $_GET['c'] : 'C_Index';
-include "/control/article/$controller.php";
 
-$controller = new $controller($start->site_theme);
+try {
+    //Попробуем открыть файл:
+    if (!$fhandle = @fopen($_SERVER['DOCUMENT_ROOT'] . "/Control/Article/$controller.php", "r")) {
+        throw new Exception();
+    } else {
+        @fclose($fhandle);
+    }
+} catch (Exception $e) {
+    $controller = 'C_Index';
+}
+
+include ("/control/article/$controller.php");
+
+$controller = new $controller();
 
 $controller->Request();
-
 ?>

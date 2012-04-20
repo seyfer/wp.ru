@@ -6,20 +6,15 @@
  * @author Seyfer
  */
 
-class M_PdoDB {
-    
-    //TODO: db driver
+abstract class M_PdoDB {  
     
     static private $db_host = "";
     static private $db_user = "";
     static private $db_passw = "";
     static private $db_name = "";
-   
+    static private $db_charset = "";
+
     static private $pdo_instance = null;
-    
-    //public function __construct($dsn, $username, $passwd, $options) {
-    //    parent::__construct($dsn, $username, $passwd, $options);
-    //}
 
     //static ?
     static public function getPdoInstance() {
@@ -30,14 +25,14 @@ class M_PdoDB {
         self::$db_name = $db_name;
         self::$db_passw = $db_passw;
         self::$db_user = $db_user;
+        self::$db_charset = $db_charset;
 
         $connect = "mysql:host=" . self::$db_host . ";dbname=" . self::$db_name . "";
 
         if (!self::$pdo_instance) {
             //создаем экземпляр и сразу задаем кодировку
-            self::$pdo_instance = new PDO($connect, self::$db_user, self::$db_passw);
-            self::$pdo_instance->exec("SET CHARACTER SET utf8");
-            self::$pdo_instance->exec("SET NAMES utf8");
+            self::$pdo_instance = new PDO($connect, self::$db_user, self::$db_passw,
+                    array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . self::$db_charset));            
         }
 
         return self::$pdo_instance;

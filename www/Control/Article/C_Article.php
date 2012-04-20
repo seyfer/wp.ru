@@ -11,8 +11,8 @@ class C_Article extends C_Base {
     
     private $article;
     
-    function __construct($site_theme) {
-        parent::__construct($site_theme);
+    function __construct() {
+        parent::__construct();
     }
     
     function OnInput() {

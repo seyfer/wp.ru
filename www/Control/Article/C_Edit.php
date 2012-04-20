@@ -12,8 +12,8 @@ class C_Edit extends C_Base {
     private $articles;
     private $template = 'v_edit.php';
 
-    function __construct($site_theme) {
-        parent::__construct($site_theme);
+    function __construct() {
+        parent::__construct();
     }
 
     protected function OnInput() {
@@ -31,7 +31,7 @@ class C_Edit extends C_Base {
                 $this->content = $_POST['content'];
 
                 if ($cnt = $art->edit($this->id_article, $this->title, $this->content)) {
-                    $this->message = "Статья успешно обновлена!";
+                    $this->message = "$cnt Статья успешно обновлена!";
                 } else {
                     $this->message = "Статья не обновлена.";
                 }

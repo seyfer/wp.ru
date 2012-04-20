@@ -13,8 +13,8 @@ class C_New extends C_Base {
     private $ar_title;
     private $ar_content;
 
-    function __construct($site_theme) {
-        parent::__construct($site_theme);
+    function __construct() {
+        parent::__construct();
     }
 
     function OnInput() {
