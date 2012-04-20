@@ -8,7 +8,7 @@
   title - заголвок
   content - текст
  */ ?>
- 
+
 <ul>   
     <? if ($articles) : ?>
         <? foreach ($articles as $article): ?>
@@ -24,6 +24,5 @@
             </li>
         <? endforeach ?>
     <? endif; ?>
-
 
 </ul>

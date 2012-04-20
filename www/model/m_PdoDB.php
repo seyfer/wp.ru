@@ -5,6 +5,7 @@
  *
  * @author Seyfer
  */
+
 class M_PdoDB {
     
     //TODO: db driver
@@ -13,8 +14,12 @@ class M_PdoDB {
     static private $db_user = "";
     static private $db_passw = "";
     static private $db_name = "";
-
+   
     static private $pdo_instance = null;
+    
+    //public function __construct($dsn, $username, $passwd, $options) {
+    //    parent::__construct($dsn, $username, $passwd, $options);
+    //}
 
     //static ?
     static public function getPdoInstance() {
@@ -75,7 +80,12 @@ class M_PdoDB {
             throw new PDOException($pdo_err[2]);
         }
     }
-
+    
+    //ф-я возвращает последний всталенный ИД
+    static public function getLastId () {
+        $p_inst = self::getPdoInstance();
+        return $p_inst->lastInsertId();
+    }
 }
 
 ?>

@@ -29,8 +29,7 @@ class C_New extends C_Base {
 
             $art = M_Articles::Instance();
 
-            if ($art->add($this->ar_title, $this->ar_content)) {
-
+            if ($cnt = $art->add($this->ar_title, $this->ar_content)) {                
                 header('Location: index.php?c=C_Editor');
                 die();
             } else {

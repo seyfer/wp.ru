@@ -30,10 +30,10 @@ class C_Edit extends C_Base {
                 $this->title = $_POST['title'];
                 $this->content = $_POST['content'];
 
-                if ($art->edit($this->id_article, $this->title, $this->content)) {
+                if ($cnt = $art->edit($this->id_article, $this->title, $this->content)) {
                     $this->message = "Статья успешно обновлена!";
                 } else {
-                    $this->message = "Ошибка обновления статьи";
+                    $this->message = "Статья не обновлена.";
                 }
             }
 

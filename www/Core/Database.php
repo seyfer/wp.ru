@@ -72,16 +72,14 @@ class Database {
                     $stmt->bindParam(":" . $k, $v);
                 }
 
-                if ($stmt->execute()) {
-
-                    return true;
+                if ($stmt->execute()) {                                    
+                    return M_PdoDB::getLastId();
                 } else {
                     $err = $stmt->errorInfo();
                     throw new PDOException($err[2]);
                 }
             } catch (PDOException $e) {
                 echo $e;
-
                 return false;
             }
     }
@@ -90,7 +88,7 @@ class Database {
 // Изменение строк
 // $table 		- имя таблицы
 // $object 		- ассоциативный массив с парами вида "имя столбца - значение"
-// $where		- условие (часть SQL запроса)
+// $where		- условие массив "условие => значение"
 // результат            - число измененных строк
 //	
     public function Update($table, $object, $where) {
@@ -107,21 +105,20 @@ class Database {
                     $sets[] = "$key='$value'";
                 }
             }
-            
+
             $wi = 0;
-            foreach ($where as $k => $v) {                
+            foreach ($where as $k => $v) {
                 $wheres[$wi] = $k . " = " . ":$k ";
                 //если больше 1 параметра делаем AND
                 if (++$wi > 1) {
-                    $wheres[$wi-2] .= " AND ";
-                }      
-                
+                    $wheres[$wi - 2] .= " AND ";
+                }
             }
 
             $sets_s = implode(',', $sets);
             $where_s = implode(' ', $wheres);
-            
-            $query = "UPDATE $table SET $sets_s WHERE $where_s";           
+
+            $query = "UPDATE $table SET $sets_s WHERE $where_s";
 
             $stmt = M_PdoDB::prepare($query);
 
@@ -132,8 +129,8 @@ class Database {
             if (!$stmt->execute()) {
                 $err = $stmt->errorInfo();
                 throw new PDOException($err[2]);
-            } else {
-                return true;
+            } else {                
+                return $stmt->rowCount();
             }
         } catch (PDOException $e) {
             echo $e;
@@ -148,13 +145,41 @@ class Database {
 // результат	- число удаленных строк
 //		
     public function Delete($table, $where) {
-        $query = "DELETE FROM $table WHERE $where";
-        $result = mysql_query($query);
+        $wheres = array();
 
-        if (!$result)
-            die(mysql_error());
+        try {
 
-        return mysql_affected_rows();
+            $wi = 0;
+            foreach ($where as $k => $v) {
+                $wheres[$wi] = $k . " = " . ":$k ";
+                //если больше 1 параметра делаем AND
+                if (++$wi > 1) {
+                    $wheres[$wi - 2] .= " AND ";
+                }
+            }
+
+            $where_s = implode(' ', $wheres);
+
+            $query = "DELETE FROM $table WHERE $where_s";
+           
+            $stmt = M_PdoDB::prepare($query);
+
+            foreach ($where as $k => $v) {
+                $stmt->bindParam(":" . $k, $v);
+            }
+
+            if (!$stmt->execute()) {
+                $err = $stmt->errorInfo();
+                throw new PDOException($err[2]);
+            } else {
+                return true;
+            }
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e;
+            return false;
+        }
     }
 
 }
