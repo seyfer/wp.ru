@@ -6,11 +6,12 @@
  * @author Admin
  */
 require_once '/control/C_Base.php';
+require_once '/Core/M_Smarty.php';
 
 class C_Index extends C_Base {
 
     private $articles;     // массив статей
-    private $intros;   
+    private $intros;
 
     //
     // Конструктор.
@@ -23,27 +24,26 @@ class C_Index extends C_Base {
     // Виртуальный обработчик запроса.
     //
     protected function OnInput() {
-        parent::OnInput();        
+        parent::OnInput();
 
         $art = M_Articles::Instance();
         // Извлечение статей.
         if ($this->articles = $art->all()) {
             $this->intros = $art->intro($this->articles);
-        }
-        else {
+        } else {
             $this->message = "Ошибка выбоки статей!";
         }
-        
     }
 
     //
     // Виртуальный генератор HTML.
     //
     protected function OnOutput() {
-        $this->content = $this->view_include('v_index.php', 
-                array(
-                    'articles' => $this->articles,
-                    'intros' => $this->intros
+        $smarty = new M_Smarty();
+
+        $this->content = $this->view_include('v_index.php', array(
+            'articles' => $this->articles,
+            'intros' => $this->intros
                 ));
 
         parent::OnOutput();
