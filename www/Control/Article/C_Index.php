@@ -6,13 +6,12 @@
  * @author Admin
  */
 require_once '/control/C_Base.php';
-require_once '/Core/M_Smarty.php';
 
 class C_Index extends C_Base {
 
     private $articles;     // массив статей
     private $intros;
-    private $article_tpl_path = "Article/";
+   
 
     //
     // Конструктор.
@@ -42,12 +41,12 @@ class C_Index extends C_Base {
     // Виртуальный генератор HTML.
     //
     protected function OnOutput() {
-        $smarty = new M_Smarty();
+        $smarty = M_Smarty::getInstance();
 
         $smarty->assign('articles', $this->articles);
         $smarty->assign('intros', $this->intros);  
         
-        $this->tpl_path .= $this->article_tpl_path;
+        $this->tpl_path .= $this->article_tpl_path;      
         
         $this->content = $smarty->fetch($this->tpl_path . 'V_Index.tpl');
 

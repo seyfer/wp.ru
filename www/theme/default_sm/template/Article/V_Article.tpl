@@ -11,7 +11,7 @@
  
 <ul>	
    
-    {if $_GET['id']}
+    {if $smarty.get.id}
         <h3>{$article['title']}</h3>
         <br>
         <p>

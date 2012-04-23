@@ -8,11 +8,11 @@
 require_once '/control/C_Base.php';
 
 class C_Editor extends C_Base {
-    
-     private $articles;     // массив статей
-     
-     //
+
+    private $articles;     // массив статей
+    //
     // Конструктор.
+
     //
     function __construct() {
         parent::__construct();
@@ -22,26 +22,32 @@ class C_Editor extends C_Base {
     // Виртуальный обработчик запроса.
     //
     protected function OnInput() {
-        parent::OnInput();        
+        parent::OnInput();
 
         $art = M_Articles::Instance();
         // Извлечение статей.
         $this->articles = $art->all();
-        $this->title = $this->title . "Редактирование";
+        $this->page_title .= "Редактирование";
     }
-    
-      //
+
+    //
     // Виртуальный генератор HTML.
     //
     protected function OnOutput() {
-        $this->content = $this->view_include('v_editor.php', 
-                array(
-                    'articles' => $this->articles                    
-                ));
+        $smarty = M_Smarty::getInstance();
+
+        $vars = array(
+            'articles' => $this->articles
+        );
+        $smarty->assign($vars);
+
+        $this->tpl_path .= $this->article_tpl_path;
+
+        $this->content = $smarty->fetch($this->tpl_path . 'V_Editor.tpl');
 
         parent::OnOutput();
     }
-    
+
 }
 
 ?>

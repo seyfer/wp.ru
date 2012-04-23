@@ -8,6 +8,8 @@
 require_once SMARTY_DIR . 'Smarty.class.php';
 
 class M_Smarty extends Smarty {
+    
+    static private $instance;
 
     function __construct() {
         parent::__construct();
@@ -28,6 +30,15 @@ class M_Smarty extends Smarty {
         $this->assign('site_name', SITE_NAME);
         $this->assign('site_root_path', SITE_ROOT_PATH);
         $this->assign('site_theme', SITE_THEME);
+    }
+    
+    static public function getInstance () {
+        
+        if (!self::$instance) {
+            self::$instance = new M_Smarty();
+        }
+        
+        return self::$instance;
     }
 
 }

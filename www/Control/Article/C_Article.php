@@ -26,7 +26,7 @@ class C_Article extends C_Base {
             if ($this->article = $art->get($this->id_article)) {
                 //вернулся массив результатов
                 $this->article = $this->article[0];
-                $this->title = $this->title . $this->article['title'];
+                $this->page_title .= $this->article['title'];
             }
             else {
                 $this->message = "статьи с таким ид не существует";
@@ -40,10 +40,17 @@ class C_Article extends C_Base {
    
     function OnOutput() {
         
-        $this->content = parent::view_include('v_article.php', array (            
-            'article' => $this->article
-        ));
+        $smarty = M_Smarty::getInstance();
         
+        $this->tpl_path .= $this->article_tpl_path;
+        
+        $vars = array (
+            'article' => $this->article
+        );
+        $smarty->assign($vars);
+        
+        $this->content = $smarty->fetch($this->tpl_path . 'V_Article.tpl');
+      
         parent::OnOutput();
     }
     

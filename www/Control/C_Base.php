@@ -7,6 +7,7 @@
  * @author Seyfer
  */
 require_once '/core/controller.php';
+require_once '/Core/M_Smarty.php';
 
 abstract class C_Base extends Controller {
 
@@ -16,6 +17,7 @@ abstract class C_Base extends Controller {
     protected $start_time; // время начала генерации страницы    
     protected $message;
     protected $tpl_path;
+    protected $article_tpl_path = "Article/";
 
     //
     // Конструктор.
@@ -42,7 +44,7 @@ abstract class C_Base extends Controller {
         
         $this->tpl_path = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/template/";
 
-        $smarty = new M_Smarty();
+        $smarty = M_Smarty::getInstance();
         
         $vars = array(
           'title' => $this->page_title,

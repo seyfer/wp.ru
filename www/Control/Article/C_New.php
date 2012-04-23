@@ -29,7 +29,7 @@ class C_New extends C_Base {
 
             $art = M_Articles::Instance();
 
-            if ($cnt = $art->add($this->ar_title, $this->ar_content)) {                
+            if ($cnt = $art->add($this->ar_title, $this->ar_content)) {
                 header('Location: index.php?c=C_Editor');
                 die();
             } else {
@@ -43,12 +43,17 @@ class C_New extends C_Base {
 
     function OnOutput() {
 
+        $sm = M_Smarty::getInstance();
 
-        $this->content = parent::view_include('v_new.php', array(
-                    'title' => $this->ar_title,
-                    'content' => $this->ar_content,
-                    'message' => $this->message
-                ));
+        $this->tpl_path .= $this->article_tpl_path;
+        $vars = array(
+            'title' => $this->ar_title,
+            'content' => $this->ar_content,
+            'message' => $this->message
+        );
+        $sm->assign($vars);
+
+        $this->content = $sm->fetch($this->tpl_path . "V_New.tpl");
 
         parent::OnOutput();
     }
