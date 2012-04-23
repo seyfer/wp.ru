@@ -19,15 +19,15 @@ abstract class C_Base extends Controller {
     //
     // Конструктор.
     //
-    function __construct() {       
-      
+    function __construct() {
+        
     }
 
     //
     // Виртуальный обработчик запроса.
     //
-    protected function OnInput() {        
-        
+    protected function OnInput() {
+
         $this->start_time = microtime();
         $this->page_title = 'Веб Гуру::';
         $this->content = '';
@@ -37,16 +37,28 @@ abstract class C_Base extends Controller {
     // Виртуальный генератор HTML.
     //
     protected function OnOutput() {
-        $vars = array(
-            'title' => $this->page_title,
-            'content' => $this->content,
-            'site_name' => SITE_NAME,
-            'site_theme' => SITE_THEME,
-            'site_root_path' => SITE_ROOT_PATH,
-            'message' => $this->message
-            );
 
-        $page = $this->view_include('v_main.php', $vars);
+        $smarty = new M_Smarty();
+
+        $smarty->assign('title', $this->page_title);
+        $smarty->assign('content', $this->content);
+        $smarty->assign('site_name', SITE_NAME);
+        $smarty->assign('site_theme', SITE_THEME);
+        $smarty->assign('site_root_path', SITE_ROOT_PATH);
+        $smarty->assign('message', $this->message);
+
+        $page = $smarty->fetch('V_Main.tpl');
+
+        /* $vars = array(
+          'title' => $this->page_title,
+          'content' => $this->content,
+          'site_name' => SITE_NAME,
+          'site_theme' => SITE_THEME,
+          'site_root_path' => SITE_ROOT_PATH,
+          'message' => $this->message
+          );
+
+          $page = $this->view_include('v_main.php', $vars); */
 
         // Время генерации страницы
         $time_gen = microtime() - $this->start_time;
@@ -67,6 +79,8 @@ abstract class C_Base extends Controller {
 
         //Вывод общей длины всех символов плюс конечный текст
         $page .= ($size_num + $size_text) . $final_text;
+
+        // !!!!!!!!!! вывод страницы
         echo $page;
     }
 

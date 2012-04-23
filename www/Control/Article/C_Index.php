@@ -41,10 +41,15 @@ class C_Index extends C_Base {
     protected function OnOutput() {
         $smarty = new M_Smarty();
 
-        $this->content = $this->view_include('v_index.php', array(
-            'articles' => $this->articles,
-            'intros' => $this->intros
-                ));
+        $smarty->assign('articles', $this->articles);
+        $smarty->assign('intros', $this->intros);
+
+        $this->content = $smarty->fetch('V_Index.tpl');
+
+        /* $this->content = $this->view_include('v_index.php', array(
+          'articles' => $this->articles,
+          'intros' => $this->intros
+          )); */
 
         parent::OnOutput();
     }
