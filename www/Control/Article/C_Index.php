@@ -12,6 +12,7 @@ class C_Index extends C_Base {
 
     private $articles;     // массив статей
     private $intros;
+    private $article_tpl_path = "Article/";
 
     //
     // Конструктор.
@@ -25,6 +26,8 @@ class C_Index extends C_Base {
     //
     protected function OnInput() {
         parent::OnInput();
+        
+        $this->page_title .= "Главная страница";        
 
         $art = M_Articles::Instance();
         // Извлечение статей.
@@ -42,14 +45,11 @@ class C_Index extends C_Base {
         $smarty = new M_Smarty();
 
         $smarty->assign('articles', $this->articles);
-        $smarty->assign('intros', $this->intros);
-
-        $this->content = $smarty->fetch('V_Index.tpl');
-
-        /* $this->content = $this->view_include('v_index.php', array(
-          'articles' => $this->articles,
-          'intros' => $this->intros
-          )); */
+        $smarty->assign('intros', $this->intros);  
+        
+        $this->tpl_path .= $this->article_tpl_path;
+        
+        $this->content = $smarty->fetch($this->tpl_path . 'V_Index.tpl');
 
         parent::OnOutput();
     }

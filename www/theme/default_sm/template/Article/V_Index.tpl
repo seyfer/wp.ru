@@ -1,4 +1,4 @@
-<? /*
+{*
 Шаблон главной страницы
 =======================
 $articles - список статей
@@ -7,7 +7,7 @@ $articles - список статей
 id_article - идентификатор
 title - заголвок
 content - текст
-*/ ?>
+*}
 
 <ul>   
     {if $articles}
@@ -16,13 +16,10 @@ content - текст
                 <a href="index.php?c=C_Article&id={$article['id_article']}">
                     {$article['title']}
                 </a>
-                <p>
-                    {$art = $article['id_article']}
-                    {$intros[$art]}
+                <p>                   
+                    {$intros[$article['id_article']]}
                 </p>
-
             </li>
         {/foreach}
     {/if}
-
 </ul>

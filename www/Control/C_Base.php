@@ -15,6 +15,7 @@ abstract class C_Base extends Controller {
     protected $content;  // содержание статьи
     protected $start_time; // время начала генерации страницы    
     protected $message;
+    protected $tpl_path;
 
     //
     // Конструктор.
@@ -31,25 +32,19 @@ abstract class C_Base extends Controller {
         $this->start_time = microtime();
         $this->page_title = 'Веб Гуру::';
         $this->content = '';
+        
     }
 
     //
     // Виртуальный генератор HTML.
     //
     protected function OnOutput() {
+        
+        $this->tpl_path = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/template/";
 
         $smarty = new M_Smarty();
-
-        $smarty->assign('title', $this->page_title);
-        $smarty->assign('content', $this->content);
-        $smarty->assign('site_name', SITE_NAME);
-        $smarty->assign('site_theme', SITE_THEME);
-        $smarty->assign('site_root_path', SITE_ROOT_PATH);
-        $smarty->assign('message', $this->message);
-
-        $page = $smarty->fetch('V_Main.tpl');
-
-        /* $vars = array(
+        
+        $vars = array(
           'title' => $this->page_title,
           'content' => $this->content,
           'site_name' => SITE_NAME,
@@ -57,9 +52,11 @@ abstract class C_Base extends Controller {
           'site_root_path' => SITE_ROOT_PATH,
           'message' => $this->message
           );
+        
+        $smarty->assign($vars);        
 
-          $page = $this->view_include('v_main.php', $vars); */
-
+        $page = $smarty->fetch($this->template_path . 'V_Main.tpl');
+        
         // Время генерации страницы
         $time_gen = microtime() - $this->start_time;
         $page .= "<!-- Время генерации страницы: $time_gen сек.-->

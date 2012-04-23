@@ -16,9 +16,14 @@ class M_Smarty extends Smarty {
         $this->compile_dir = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/compile/";
         $this->config_dir = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/config/";
         $this->cache_dir = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/cache/";
-
+        
+        //$this->debug_tpl = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/template/";
+        $this->debugging = false;
+        
         $this->compile_check = true;
         $this->caching = false;
+        $this->cache_modified_check = TRUE;
+        $this->cache_lifetime = 1;
 
         $this->assign('site_name', SITE_NAME);
         $this->assign('site_root_path', SITE_ROOT_PATH);

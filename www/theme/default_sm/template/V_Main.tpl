@@ -1,15 +1,15 @@
-<? /*
+{*
 Шаблон главной страницы
 =======================
 $title - заголовок
 $content - содержание
 $site_theme - текущая тема
-*/ ?>
-
+*}
+{*debug*}
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>{$page_title}</title>
+        <title>{$title}</title>
         <meta content="text/html; charset=utf-8" http-equiv="content-type">	
         <link rel="stylesheet" type="text/css" media="screen" 
               href="theme/{$site_theme}/template/style.css" /> 
