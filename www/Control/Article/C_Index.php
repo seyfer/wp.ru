@@ -46,9 +46,12 @@ class C_Index extends C_Base {
         $smarty->assign('articles', $this->articles);
         $smarty->assign('intros', $this->intros);  
         
-        $this->tpl_path .= $this->article_tpl_path;      
+        $this->tpl_path .= $this->article_tpl_path;
+        $smarty->cache_id = count($this->articles) . $this->page_title;
         
-        $this->content = $smarty->fetch($this->tpl_path . 'V_Index.tpl');
+        //var_dump($smarty->cache_id);
+        
+        $this->content = $smarty->fetch($this->tpl_path . 'V_Index.tpl', $smarty->cache_id);
 
         parent::OnOutput();
     }

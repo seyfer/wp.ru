@@ -12,6 +12,7 @@ class C_New extends C_Base {
     private $articles;
     private $ar_title;
     private $ar_content;
+    private $template = "V_New.tpl";
 
     function __construct() {
         parent::__construct();
@@ -20,7 +21,7 @@ class C_New extends C_Base {
     function OnInput() {
         parent::OnInput();
 
-        $this->title = $this->title . "Новая статья";
+        $this->page_title .= "Новая статья";
 
         if ($this->IsPost()) {
 
@@ -46,6 +47,9 @@ class C_New extends C_Base {
         $sm = M_Smarty::getInstance();
 
         $this->tpl_path .= $this->article_tpl_path;
+        $smarty->cache_id = $this->page_title;
+        //var_dump($smarty->cache_id);
+        
         $vars = array(
             'title' => $this->ar_title,
             'content' => $this->ar_content,
@@ -53,7 +57,7 @@ class C_New extends C_Base {
         );
         $sm->assign($vars);
 
-        $this->content = $sm->fetch($this->tpl_path . "V_New.tpl");
+        $this->content = $sm->fetch($this->tpl_path . $this->template, $sm->cache_id);
 
         parent::OnOutput();
     }

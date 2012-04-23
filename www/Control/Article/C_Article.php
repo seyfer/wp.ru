@@ -41,15 +41,18 @@ class C_Article extends C_Base {
     function OnOutput() {
         
         $smarty = M_Smarty::getInstance();
+        //$smarty->caching = false;
         
         $this->tpl_path .= $this->article_tpl_path;
+        $smarty->cache_id = $this->id_article . $this->page_title;
+        //var_dump($smarty->cache_id);
         
         $vars = array (
             'article' => $this->article
         );
         $smarty->assign($vars);
         
-        $this->content = $smarty->fetch($this->tpl_path . 'V_Article.tpl');
+        $this->content = $smarty->fetch($this->tpl_path . 'V_Article.tpl', $smarty->cache_id);
       
         parent::OnOutput();
     }

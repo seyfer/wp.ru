@@ -20,12 +20,12 @@ class M_Smarty extends Smarty {
         $this->cache_dir = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/cache/";
         
         //$this->debug_tpl = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/template/";
-        $this->debugging = false;
+        //$this->debugging = false;
         
         $this->compile_check = true;
-        $this->caching = false;
-        $this->cache_modified_check = TRUE;
-        $this->cache_lifetime = 1;
+        $this->caching = true;
+        //$this->cache_modified_check = TRUE;
+        //$this->cache_lifetime = 3600;
 
         $this->assign('site_name', SITE_NAME);
         $this->assign('site_root_path', SITE_ROOT_PATH);

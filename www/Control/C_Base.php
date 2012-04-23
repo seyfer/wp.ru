@@ -34,31 +34,32 @@ abstract class C_Base extends Controller {
         $this->start_time = microtime();
         $this->page_title = 'Веб Гуру::';
         $this->content = '';
-        
     }
 
     //
     // Виртуальный генератор HTML.
     //
     protected function OnOutput() {
-        
+
         $this->tpl_path = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/template/";
 
         $smarty = M_Smarty::getInstance();
-        
-        $vars = array(
-          'title' => $this->page_title,
-          'content' => $this->content,
-          'site_name' => SITE_NAME,
-          'site_theme' => SITE_THEME,
-          'site_root_path' => SITE_ROOT_PATH,
-          'message' => $this->message
-          );
-        
-        $smarty->assign($vars);        
 
-        $page = $smarty->fetch($this->template_path . 'V_Main.tpl');
-        
+        $vars = array(
+            'title' => $this->page_title,
+            'content' => $this->content,
+            'site_name' => SITE_NAME,
+            'site_theme' => SITE_THEME,
+            'site_root_path' => SITE_ROOT_PATH,
+            'message' => $this->message
+        );
+
+        $smarty->assign($vars);
+        $smarty->cache_id = strlen($this->content) . $this->page_title;
+        //var_dump($smarty->cache_id);
+
+        $page = $smarty->fetch($this->tpl_path . 'V_Main.tpl');
+
         // Время генерации страницы
         $time_gen = microtime() - $this->start_time;
         $page .= "<!-- Время генерации страницы: $time_gen сек.-->

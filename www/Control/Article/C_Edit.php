@@ -10,7 +10,7 @@ require_once '/control/C_Base.php';
 class C_Edit extends C_Base {
 
     private $articles;
-    private $template = 'v_edit.php';
+    private $template = 'V_Edit.tpl';
 
     function __construct() {
         parent::__construct();
@@ -24,7 +24,7 @@ class C_Edit extends C_Base {
             $art = M_Articles::Instance();
 
             if ($_POST['edit']) {
-                $this->page_title = $this->page_title . $_POST['title'];
+                $this->page_title .= "Редактировать:" . $_POST['title'];
 
                 $this->id_article = $_POST['id_article'];
                 $this->title = $_POST['title'];
@@ -38,7 +38,7 @@ class C_Edit extends C_Base {
             }
 
             if ($_POST['delete']) {
-                $this->page_title = $this->page_title . $_POST['title'];
+                $this->page_title .= "Редактировать:" . $_POST['title'];
 
                 $this->id_article = $_POST['id_article'];
                 if ($art->delete($this->id_article)) {
@@ -57,29 +57,37 @@ class C_Edit extends C_Base {
                 //существует ли статья?
                 if ($this->articles = $art->get($this->id_article)) {
                     $this->articles = $this->articles[0];
-                    $this->page_title = $this->page_title . $this->articles['title'];
+                    $this->page_title .= "Редактировать:" . $this->articles['title'];
 
                     $this->title = $this->articles['title'];
                     $this->content = $this->articles['content'];
                 } else {
-                    $this->page_title = $this->page_title . '404';
-                    $this->template = 'v_404.php';
+                    $this->page_title .= '404';
+                    $this->template = 'V_404.php';
                 }
             } else {
-                $this->page_title = $this->page_title . '404';
-                $this->template = 'v_404.php';
+                $this->page_title .= '404';
+                $this->template = 'V_404.php';
             }
         }
     }
 
     protected function OnOutput() {
-
-        // Вывод в шаблон.
-        $this->content = $this->view_include($this->template, array(
+        $sm = new M_Smarty();
+        //$smarty->caching = false;
+        
+        $this->tpl_path .= $this->article_tpl_path;
+        $sm->cache_id = $this->id_article . $this-> title;
+        //var_dump($sm->cache_id);
+        
+        $vars = array(
             'title' => $this->title,
             'content' => $this->content,
             'id_article' => $this->id_article
-                ));
+                );
+        $sm->assign($vars);
+        
+        $this->content = $sm->fetch($this->tpl_path . $this->template, $sm->cache_id);
 
         parent::OnOutput();
     }
