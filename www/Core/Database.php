@@ -124,18 +124,18 @@ class Database {
             $where_s = implode(' ', $wheres);
 
             $query = "UPDATE $table SET $sets_s WHERE $where_s";
-            var_dump($query);
+            
             $stmt = M_PdoDB::prepare($query);
 
             //$i=0;
             foreach ($object as $k => &$v) {
                 //$i++;
-                echo ":$k" . $i;
+                
                 $stmt->bindParam(":$k" . $i, $v);
             }
             foreach ($where as $k => &$v) {
                 //$i++;
-                echo ":$k" . $i;
+                
                 $stmt->bindParam(":$k" . $i, $v);
             }
 
