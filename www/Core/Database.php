@@ -52,6 +52,7 @@ class Database {
 
         if ($object)
             try {
+
                 foreach ($object as $key => $value) {
                     $columns[] = $key;
 
@@ -66,13 +67,14 @@ class Database {
                 $values_s = implode(',', $values);
 
                 $query = "INSERT INTO $table ($columns_s) VALUES ($values_s)";
+
                 $stmt = M_PdoDB::prepare($query);
 
-                foreach ($object as $k => $v) {                   
+                foreach ($object as $k => &$v) {
                     $stmt->bindParam(":$k", $v);
                 }
-               
-                if ($stmt->execute()) {                                    
+
+                if ($stmt->execute()) {
                     return M_PdoDB::getLastId();
                 } else {
                     $err = $stmt->errorInfo();
@@ -96,19 +98,22 @@ class Database {
         $wheres = array();
 
         try {
-
+            
+            //$i=0;
             foreach ($object as $key => $value) {
-
+                //$i++;
                 if ($value === null) {
                     $sets[] = "$key=NULL";
                 } else {
-                    $sets[] = "$key='$value'";
+                    $sets[] = "$key=:$key" . $i;
                 }
+                
             }
 
             $wi = 0;
             foreach ($where as $k => $v) {
-                $wheres[$wi] = $k . " = " . ":$k";
+                //$i++;
+                $wheres[$wi] = $k . " = " . ":$k" . $i;
                 //если больше 1 параметра делаем AND
                 if (++$wi > 1) {
                     $wheres[$wi - 2] .= " AND ";
@@ -119,17 +124,25 @@ class Database {
             $where_s = implode(' ', $wheres);
 
             $query = "UPDATE $table SET $sets_s WHERE $where_s";
-
+            var_dump($query);
             $stmt = M_PdoDB::prepare($query);
 
-            foreach ($where as $k => $v) {
-                $stmt->bindParam(":$k", $v);
+            //$i=0;
+            foreach ($object as $k => &$v) {
+                //$i++;
+                echo ":$k" . $i;
+                $stmt->bindParam(":$k" . $i, $v);
+            }
+            foreach ($where as $k => &$v) {
+                //$i++;
+                echo ":$k" . $i;
+                $stmt->bindParam(":$k" . $i, $v);
             }
 
             if (!$stmt->execute()) {
                 $err = $stmt->errorInfo();
                 throw new PDOException($err[2]);
-            } else {                
+            } else {
                 return $stmt->rowCount();
             }
         } catch (PDOException $e) {
@@ -161,7 +174,7 @@ class Database {
             $where_s = implode(' ', $wheres);
 
             $query = "DELETE FROM $table WHERE $where_s";
-           
+
             $stmt = M_PdoDB::prepare($query);
 
             foreach ($where as $k => $v) {

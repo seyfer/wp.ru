@@ -5,13 +5,6 @@ $title - заголовок
 $content - содержание
 */ ?>
 
-
-<h1>Редактировать статью</h1>
-
-{if $success}
-    <b>Успешно обновлена</b>
-{/if}
-
 <form method="post" action="index.php?c=C_Edit&id={$id_article}">
     Название:
     <br/>

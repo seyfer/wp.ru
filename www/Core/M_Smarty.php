@@ -23,7 +23,7 @@ class M_Smarty extends Smarty {
         //$this->debugging = false;
 
         $this->compile_check = true;
-        $this->caching = true;
+        $this->caching = false;
         //$this->cache_modified_check = TRUE;
         $this->cache_lifetime = 3600;
     }

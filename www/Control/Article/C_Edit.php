@@ -61,6 +61,7 @@ class C_Edit extends C_Base {
 
                     $this->title = $this->articles['title'];
                     $this->content = $this->articles['content'];
+                    $this->message = "Редактировать статью";
                 } else {
                     $this->page_title .= '404';
                     $this->template = 'V_404.tpl';
@@ -77,7 +78,7 @@ class C_Edit extends C_Base {
         //$smarty->caching = false;
         
         $this->tpl_path .= $this->article_tpl_path;
-        $sm->cache_id = $sm->get_cache_id($this->id_article . $this->title . $this->content);
+        $sm->cache_id = $sm->get_cache_id($this->id_article . $this->title . $this->content . $this->message);
         
         $vars = array(
             'title' => $this->title,

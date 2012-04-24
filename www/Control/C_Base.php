@@ -54,9 +54,9 @@ abstract class C_Base extends Controller {
             'message' => $this->message
         );
 
-        $smarty->assign($vars);
-        $smarty->cache_id = $smarty->get_cache_id($this->content . $this->page_title);
-
+        $smarty->assign($vars);        
+        $smarty->cache_id = $smarty->get_cache_id($this->content . $this->page_title . $this->message);            
+        
         $page = $smarty->fetch($this->tpl_path . 'V_Main.tpl', $smarty->cache_id);
 
         // Время генерации страницы
