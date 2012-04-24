@@ -105,7 +105,8 @@ class Database {
                 if ($value === null) {
                     $sets[] = "$key=NULL";
                 } else {
-                    $sets[] = "$key=:$key" . $i;
+                    //$sets[] = "$key=:$key" . $i;
+                    $sets[] = "$key=:$key";
                 }
                 
             }
@@ -113,7 +114,8 @@ class Database {
             $wi = 0;
             foreach ($where as $k => $v) {
                 //$i++;
-                $wheres[$wi] = $k . " = " . ":$k" . $i;
+                //$wheres[$wi] = $k . " = " . ":$k" . $i;
+                $wheres[$wi] = $k . " = " . ":$k";
                 //если больше 1 параметра делаем AND
                 if (++$wi > 1) {
                     $wheres[$wi - 2] .= " AND ";
@@ -129,14 +131,14 @@ class Database {
 
             //$i=0;
             foreach ($object as $k => &$v) {
-                //$i++;
-                
-                $stmt->bindParam(":$k" . $i, $v);
+                //$i++;                
+                //$stmt->bindParam(":$k" . $i, $v);
+                $stmt->bindParam(":$k", $v);
             }
             foreach ($where as $k => &$v) {
-                //$i++;
-                
-                $stmt->bindParam(":$k" . $i, $v);
+                //$i++;                
+                //$stmt->bindParam(":$k" . $i, $v);
+                $stmt->bindParam(":$k", $v);
             }
 
             if (!$stmt->execute()) {
