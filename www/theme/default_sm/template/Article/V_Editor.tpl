@@ -19,7 +19,6 @@
             <a href="index.php?c=C_Edit&id={$article['id_article']}">
                 {$article['title']}
             </a>
-
         </li>
     {/foreach}
 </ul>

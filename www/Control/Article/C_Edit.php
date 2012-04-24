@@ -63,11 +63,11 @@ class C_Edit extends C_Base {
                     $this->content = $this->articles['content'];
                 } else {
                     $this->page_title .= '404';
-                    $this->template = 'V_404.php';
+                    $this->template = 'V_404.tpl';
                 }
             } else {
                 $this->page_title .= '404';
-                $this->template = 'V_404.php';
+                $this->template = 'V_404.tpl';
             }
         }
     }
@@ -77,8 +77,7 @@ class C_Edit extends C_Base {
         //$smarty->caching = false;
         
         $this->tpl_path .= $this->article_tpl_path;
-        $sm->cache_id = $this->id_article . $this-> title;
-        //var_dump($sm->cache_id);
+        $sm->cache_id = $sm->get_cache_id($this->id_article . $this->title . $this->content);
         
         $vars = array(
             'title' => $this->title,

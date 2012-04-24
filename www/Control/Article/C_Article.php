@@ -44,8 +44,7 @@ class C_Article extends C_Base {
         //$smarty->caching = false;
         
         $this->tpl_path .= $this->article_tpl_path;
-        $smarty->cache_id = $this->id_article . $this->page_title;
-        //var_dump($smarty->cache_id);
+        $smarty->cache_id = $smarty->get_cache_id($this->article);
         
         $vars = array (
             'article' => $this->article

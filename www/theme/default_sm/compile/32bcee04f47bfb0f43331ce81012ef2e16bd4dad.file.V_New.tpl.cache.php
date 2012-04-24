@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-23 11:54:38
+<?php /* Smarty version Smarty-3.1.8, created on 2012-04-24 05:56:27
          compiled from "Z:/home/wp.ru/www/theme/default_sm/template\Article\V_New.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:294874f950abe49f830-21419891%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:285094f96084b45aac0-41460848%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '294874f950abe49f830-21419891',
+  'nocache_hash' => '285094f96084b45aac0-41460848',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f950abe4eb969_68587795',
+  'unifunc' => 'content_4f96084b4a7a82_77655644',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4f950abe4eb969_68587795')) {function content_4f950abe4eb969_68587795($_smarty_tpl) {?><<?php ?>? /*
+<?php if ($_valid && !is_callable('content_4f96084b4a7a82_77655644')) {function content_4f96084b4a7a82_77655644($_smarty_tpl) {?><<?php ?>? /*
   Шаблон главной страницы
   =======================
   $title - заголовок

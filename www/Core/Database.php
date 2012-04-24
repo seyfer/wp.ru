@@ -68,10 +68,10 @@ class Database {
                 $query = "INSERT INTO $table ($columns_s) VALUES ($values_s)";
                 $stmt = M_PdoDB::prepare($query);
 
-                foreach ($object as $k => $v) {
-                    $stmt->bindParam(":" . $k, $v);
+                foreach ($object as $k => $v) {                   
+                    $stmt->bindParam(":$k", $v);
                 }
-
+               
                 if ($stmt->execute()) {                                    
                     return M_PdoDB::getLastId();
                 } else {
@@ -108,7 +108,7 @@ class Database {
 
             $wi = 0;
             foreach ($where as $k => $v) {
-                $wheres[$wi] = $k . " = " . ":$k ";
+                $wheres[$wi] = $k . " = " . ":$k";
                 //если больше 1 параметра делаем AND
                 if (++$wi > 1) {
                     $wheres[$wi - 2] .= " AND ";
@@ -123,7 +123,7 @@ class Database {
             $stmt = M_PdoDB::prepare($query);
 
             foreach ($where as $k => $v) {
-                $stmt->bindParam(":" . $k, $v);
+                $stmt->bindParam(":$k", $v);
             }
 
             if (!$stmt->execute()) {

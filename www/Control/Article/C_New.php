@@ -13,6 +13,8 @@ class C_New extends C_Base {
     private $ar_title;
     private $ar_content;
     private $template = "V_New.tpl";
+    private $last_id;
+    private $random_new;
 
     function __construct() {
         parent::__construct();
@@ -22,6 +24,7 @@ class C_New extends C_Base {
         parent::OnInput();
 
         $this->page_title .= "Новая статья";
+        $this->random_new = rand(0, 3600*36);
 
         if ($this->IsPost()) {
 
@@ -30,7 +33,7 @@ class C_New extends C_Base {
 
             $art = M_Articles::Instance();
 
-            if ($cnt = $art->add($this->ar_title, $this->ar_content)) {
+            if ($this->last_id = $art->add($this->ar_title, $this->ar_content)) {
                 header('Location: index.php?c=C_Editor');
                 die();
             } else {
@@ -47,8 +50,8 @@ class C_New extends C_Base {
         $sm = M_Smarty::getInstance();
 
         $this->tpl_path .= $this->article_tpl_path;
-        $smarty->cache_id = $this->page_title;
-        //var_dump($smarty->cache_id);
+        $sm->cache_id = $sm->get_cache_id($this->random_new . $this->ar_title);
+        $sm->cache_lifetime = 600;
         
         $vars = array(
             'title' => $this->ar_title,
