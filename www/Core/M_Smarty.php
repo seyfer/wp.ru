@@ -22,10 +22,11 @@ class M_Smarty extends Smarty {
         //$this->debug_tpl = $_SERVER['DOCUMENT_ROOT'] . "/theme/" . SITE_THEME . "/template/";
         //$this->debugging = false;
 
+        $this->caching = false;
         $this->compile_check = true;
-        $this->caching = true;
         //$this->cache_modified_check = TRUE;
-        $this->cache_lifetime = 3600;
+        //$this->cache_lifetime = 60 * 60;
+        $this->cache_lifetime = 60;
     }
 
     //ф-я получения экземпляра

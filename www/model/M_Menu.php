@@ -38,38 +38,79 @@ class M_Menu {
 
     public function getActive() {
 
-        $query = "SELECT sort FROM " . $this->tbl_with_prefix . " WHERE active = '1'";
-
-        $object = array();
-        $object['controller'] = $controller;
+        $query = "SELECT sort FROM " . $this->tbl_with_prefix . "
+            WHERE active = '1' ORDER BY SORT ASC";
 
         $active = $this->DB->Select($query);
 
         return $active[0];
-        var_dump($active);
     }
 
-    public function setActive ($controller) {
+    public function setActive($controller) {
 
         $object = array(
-                'active' => 1
-            );
+            'active' => 1
+        );
 
-            $where = array(
-                'link = :controller' => $controller
-            );
+        $where = array(
+            'link = :controller' => $controller
+        );
 
-            $this->DB->Update($this->tbl_with_prefix, $object, $where);
+        $this->DB->Update($this->tbl_with_prefix, $object, $where);
 
-            $object = array(
-                'active' => 0
-            );
+        $object = array(
+            'active' => 0
+        );
 
-            $where = array(
-                'link != :controller' => $controller
-            );
+        $where = array(
+            'link != :controller' => $controller
+        );
 
-            $this->DB->Update($this->tbl_with_prefix, $object, $where);
+        $this->DB->Update($this->tbl_with_prefix, $object, $where);
+    }
+
+    public function sortUp($id_menu) {
+
+    }
+
+    public function sortDown($id_menu) {
+
+    }
+
+    public function save($menu_array) {
+
+        //TODO: false ??? na 2m
+
+        $upd_cnt = 0;
+
+        if ($menu_array) {
+            foreach ($menu_array as $menu_item) {
+                if (is_array($menu_item)) {
+
+                    $object = array(
+                        'ancor' => $menu_item['ancor'],
+                        'link' => $menu_item['link'],
+                        'sort' => $menu_item['sort']
+                    );
+
+                    $where = array(
+                        'id_menu = :id_menu' => $menu_item['id_menu']
+                    );
+
+                    if (!$this->DB->Update($this->tbl_with_prefix, $object, $where)) {
+                        return FALSE;
+                    }
+
+                    $upd_cnt++;
+                }
+            }
+            return $upd_cnt;
+        } else {
+            return false;
+        }
+    }
+
+    public function add() {
 
     }
 

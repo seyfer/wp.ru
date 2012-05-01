@@ -11,15 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '304314f9f96d6ae1fb9-90050475',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f9facad2681d8_65993812',
+  'unifunc' => 'content_4f9fa66f5ee692_42836216',
   'has_nocache_code' => false,
-  'cache_lifetime' => 60,
+  'cache_lifetime' => 3600,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4f9facad2681d8_65993812')) {function content_4f9facad2681d8_65993812($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4f9fa66f5ee692_42836216')) {function content_4f9fa66f5ee692_42836216($_smarty_tpl) {?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>Веб Гуру::Главная страница</title>
+        <title>Веб Гуру::Редактор меню</title>
         <meta content="text/html; charset=utf-8" http-equiv="content-type">
         <link rel="stylesheet" type="text/css" media="screen"
               href="theme/default_sm/template/style.css" />
@@ -36,9 +36,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <div class="menu">
                 <div class="menu">
                         <a href="?c=C_Index" class="
-                                  active
                               ">Главная</a>
                     <a href="?c=C_Editor" class="
+                                  active
                               ">Консоль редактора</a>
             </div>
 
@@ -46,31 +46,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
             <div class="content">
                                 <ul>   
-                        <li>
-                <a href="index.php?c=C_Article&id=70">
-                    третья1
-                </a>
-                <p>                   
-                    третья третья третья третья третья третья третья третья третья третья третья третья третья...
-                </p>
-            </li>
-                    <li>
-                <a href="index.php?c=C_Article&id=69">
-                    вторая
-                </a>
-                <p>                   
-                    вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая...
-                </p>
-            </li>
-                    <li>
-                <a href="index.php?c=C_Article&id=68">
-                    первая
-                </a>
-                <p>                   
-                    первая первая первая первая первая первая первая первая первая первая первая первая первая...
-                </p>
-            </li>
-            </ul>
+    </ul>
             </div>
         </div>
 

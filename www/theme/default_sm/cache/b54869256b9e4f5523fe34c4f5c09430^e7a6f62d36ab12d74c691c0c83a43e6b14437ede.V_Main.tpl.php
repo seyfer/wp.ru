@@ -11,15 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '304314f9f96d6ae1fb9-90050475',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f9facad2681d8_65993812',
+  'unifunc' => 'content_4f9fac67b09cf1_75929359',
   'has_nocache_code' => false,
-  'cache_lifetime' => 60,
+  'cache_lifetime' => 3600,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4f9facad2681d8_65993812')) {function content_4f9facad2681d8_65993812($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4f9fac67b09cf1_75929359')) {function content_4f9fac67b09cf1_75929359($_smarty_tpl) {?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>Веб Гуру::Главная страница</title>
+        <title>Веб Гуру::Редактор меню</title>
         <meta content="text/html; charset=utf-8" http-equiv="content-type">
         <link rel="stylesheet" type="text/css" media="screen"
               href="theme/default_sm/template/style.css" />
@@ -36,41 +36,48 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <div class="menu">
                 <div class="menu">
                         <a href="?c=C_Index" class="
-                                  active
                               ">Главная</a>
                     <a href="?c=C_Editor" class="
+                                  active
                               ">Консоль редактора</a>
             </div>
 
             </div>
 
             <div class="content">
-                                <ul>   
-                        <li>
-                <a href="index.php?c=C_Article&id=70">
-                    третья1
-                </a>
-                <p>                   
-                    третья третья третья третья третья третья третья третья третья третья третья третья третья...
-                </p>
+                                <p>
+    <a href="?c=C_Editor">Статьи</a>
+    <a href="?c=C_Menu_Editor">Меню</a>
+</p>
+<hr>
+
+<form name="menu_editor" method="post" action="?c=C_Menu_Editor">
+    <ul>
+                    <li class="editor_menu">
+                <table>
+                    <tr>
+                Название:<input type="text" value="Главная" name="ancor">
+                Ссылка:<input type="text" value="C_Index" name="link">
+                Сортировка:<input type="text" value="1" name="sort">
+                <a href="?c=C_Menu_Editor&up=1">+</a>
+                <a href="?c=C_Menu_Editor&down=1">-</a>
+                </tr>
+                </table>
             </li>
-                    <li>
-                <a href="index.php?c=C_Article&id=69">
-                    вторая
-                </a>
-                <p>                   
-                    вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая...
-                </p>
-            </li>
-                    <li>
-                <a href="index.php?c=C_Article&id=68">
-                    первая
-                </a>
-                <p>                   
-                    первая первая первая первая первая первая первая первая первая первая первая первая первая...
-                </p>
+                    <li class="editor_menu">
+                <table>
+                    <tr>
+                Название:<input type="text" value="Консоль редактора" name="ancor">
+                Ссылка:<input type="text" value="C_Editor" name="link">
+                Сортировка:<input type="text" value="2" name="sort">
+                <a href="?c=C_Menu_Editor&up=2">+</a>
+                <a href="?c=C_Menu_Editor&down=2">-</a>
+                </tr>
+                </table>
             </li>
             </ul>
+    <input type="submit" name="save_menu" value="Сохранить">
+</form>
             </div>
         </div>
 

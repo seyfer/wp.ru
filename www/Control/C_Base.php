@@ -20,11 +20,12 @@ abstract class C_Base extends Controller {
     protected $message;         //сообщения
     protected $tpl_path;        //путь до шаблонов
     protected $article_tpl_path = "Article/";   //путь до шаблона статей
+    protected $menu_tpl_path = "Menu/";
+
     //protected $menu_arr = array();  //архив для генерации меню
     //protected $menu_active;     //активный пункт меню
     //
     // Конструктор.
-
     //
     function __construct() {
 
@@ -57,12 +58,12 @@ abstract class C_Base extends Controller {
         $menu_active = $menu->getActive();
         $menu_active = $menu_active['sort'];
 
-        $smarty->assign('menu',$menu_arr);
+        $smarty->assign('menu', $menu_arr);
         $smarty->assign('menu_active', $menu_active);
         $smarty->cache_id = $smarty->get_cache_id($menu_arr);
         $smarty->cache_id .= $this->menu_active;
 
-        $menu = $smarty->fetch($this->tpl_path . 'V_Menu.tpl', $smarty->cache_id);
+        $menu = $smarty->fetch($this->tpl_path . 'V_Main_Menu.tpl', $smarty->cache_id);
 
         $vars = array(
             'title' => $this->page_title,

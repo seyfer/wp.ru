@@ -10,18 +10,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '86994f9f96db7dd3c7-76513874',
-  'variables' => 
-  array (
-    'articles' => 0,
-    'article' => 0,
-    'intros' => 0,
-  ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f9f96db8f4187_31459427',
-  'cache_lifetime' => 3600,
+  'unifunc' => 'content_4f9facad218b67_97178986',
+  'has_nocache_code' => false,
+  'cache_lifetime' => 60,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4f9f96db8f4187_31459427')) {function content_4f9f96db8f4187_31459427($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4f9facad218b67_97178986')) {function content_4f9facad218b67_97178986($_smarty_tpl) {?>
 <ul>   
                         <li>
                 <a href="index.php?c=C_Article&id=70">

@@ -9,20 +9,33 @@ require_once('model/M_Articles.php');
 
 $start = M_Startup::startup();
 
+$c_dirs = $start->getSubDirNames($_SERVER['DOCUMENT_ROOT'] . '/Control');
+
 $controller = ($_GET['c'] != '') ? $_GET['c'] : 'C_Index';
 
 try {
-    //Попробуем открыть файл:
-    if (!$fhandle = @fopen($_SERVER['DOCUMENT_ROOT'] . "/Control/Article/$controller.php", "r")) {
-        throw new Exception();
-    } else {
+
+    $success = 0;
+    foreach ($c_dirs as $c_dir) {
+        $fhandle = @fopen($_SERVER['DOCUMENT_ROOT'] . "/Control/$c_dir/$controller.php", "r");
+
+        if ($fhandle) {
+            $success++;
+            $success_dir = $c_dir;
+        }
+
         @fclose($fhandle);
     }
+    //Попробуем открыть файл:
+    if ($success == 0) {
+        throw new Exception();
+    }
 } catch (Exception $e) {
+    $success_dir = "Article";
     $controller = 'C_Index';
 }
 
-include ("/control/article/$controller.php");
+include ("/control/$success_dir/$controller.php");
 
 $controller = new $controller();
 

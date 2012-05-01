@@ -11,11 +11,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '306024f9f96da06b681-09609563',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f9f96e673e974_77873750',
+  'unifunc' => 'content_4f9fa6f7c39973_28685667',
   'has_nocache_code' => false,
   'cache_lifetime' => 3600,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4f9f96e673e974_77873750')) {function content_4f9f96e673e974_77873750($_smarty_tpl) {?><?php echo '<?'; ?> /*
+<?php if ($_valid && !is_callable('content_4f9fa6f7c39973_28685667')) {function content_4f9fa6f7c39973_28685667($_smarty_tpl) {?><?php echo '<?'; ?> /*
 Шаблон главной страницы
 =======================
 $title - заголовок

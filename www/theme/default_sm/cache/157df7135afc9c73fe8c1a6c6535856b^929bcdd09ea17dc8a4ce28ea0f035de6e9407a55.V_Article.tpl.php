@@ -10,16 +10,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '87284f9f96dcc50465-64012906',
-  'variables' => 
-  array (
-    'article' => 0,
-  ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f9f96dccedde0_17253136',
+  'unifunc' => 'content_4f9fa6f99bf7d9_51245949',
+  'has_nocache_code' => false,
   'cache_lifetime' => 3600,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4f9f96dccedde0_17253136')) {function content_4f9f96dccedde0_17253136($_smarty_tpl) {?><?php echo '<?'; ?> /*
+<?php if ($_valid && !is_callable('content_4f9fa6f99bf7d9_51245949')) {function content_4f9fa6f99bf7d9_51245949($_smarty_tpl) {?><?php echo '<?'; ?> /*
   Шаблон одной статьи
   =======================
   $article - массив статьи

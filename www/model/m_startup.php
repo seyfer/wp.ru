@@ -54,6 +54,25 @@ class M_Startup {
         return self::Instance();
     }
 
+    static public function getSubDirNames ($path) {
+
+        $path = rtrim($path, "/") . "/";
+        
+        $handle = opendir($path);
+        $exclude = ".|..";
+        $exclude_array = explode("|", $exclude);
+
+        $result = array();
+        while(false !== ($filename = readdir($handle))) {
+            if(!in_array(strtolower($filename), $exclude_array)) {
+                if(is_dir($path . $filename . "/")) {
+                    $result[] = $filename;
+                }
+            }
+        }
+        return $result;
+    }
+
 }
 
 ?>

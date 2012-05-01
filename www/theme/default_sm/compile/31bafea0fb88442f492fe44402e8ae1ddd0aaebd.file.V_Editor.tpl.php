@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-05-01 15:38:17
+<?php /* Smarty version Smarty-3.1.8, created on 2012-05-01 17:17:17
          compiled from "Z:/home/wp.ru/www/theme/default_sm/template\Article\V_Editor.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:303214f9f92e9b33972-57621227%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '31bafea0fb88442f492fe44402e8ae1ddd0aaebd' => 
     array (
       0 => 'Z:/home/wp.ru/www/theme/default_sm/template\\Article\\V_Editor.tpl',
-      1 => 1335174193,
+      1 => 1335862974,
       2 => 'file',
     ),
   ),
@@ -15,31 +15,27 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_4f9f92e9bc1471_09180348',
   'variables' => 
   array (
     'articles' => 0,
     'article' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f9f92e9bc1471_09180348',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4f9f92e9bc1471_09180348')) {function content_4f9f92e9bc1471_09180348($_smarty_tpl) {?><<?php ?>? /*
-  Шаблон главной страницы
-  =======================
-  $articles - список статей
+<?php if ($_valid && !is_callable('content_4f9f92e9bc1471_09180348')) {function content_4f9f92e9bc1471_09180348($_smarty_tpl) {?>
 
-  статья:
-  id_article - идентификатор
-  title - заголвок
-  content - текст
- */ ?<?php ?>>
-
+ <p>
+     <a href="?c=C_Editor">Статьи</a>
+     <a href="?c=C_Menu_Editor">Меню</a>
+ </p>
+ <hr>
 
 <ul>
     <li>
         <b><a href="index.php?c=C_New">Новая статья</a></b>
-    </li>	
+    </li>
     <?php  $_smarty_tpl->tpl_vars['article'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['article']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['articles']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['article']->key => $_smarty_tpl->tpl_vars['article']->value){
