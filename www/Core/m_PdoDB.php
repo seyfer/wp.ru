@@ -5,37 +5,43 @@
  *
  * @author Seyfer
  */
+abstract class M_PdoDB {
 
-abstract class M_PdoDB {  
-    
     static private $db_host = "";
     static private $db_user = "";
     static private $db_passw = "";
     static private $db_name = "";
     static private $db_charset = "";
-
+    static public $tbl_prefix = "";
     static private $pdo_instance = null;
 
     //static ?
     static public function getPdoInstance() {
 
         include $_SERVER['DOCUMENT_ROOT'] . "/config/db_conf.php";
-        
+
         self::$db_host = $db_host;
         self::$db_name = $db_name;
         self::$db_passw = $db_passw;
         self::$db_user = $db_user;
         self::$db_charset = $db_charset;
+        self::$tbl_prefix = $tbl_prefix;
 
         $connect = "mysql:host=" . self::$db_host . ";dbname=" . self::$db_name . "";
 
         if (!self::$pdo_instance) {
             //создаем экземпляр и сразу задаем кодировку
             self::$pdo_instance = new PDO($connect, self::$db_user, self::$db_passw,
-                    array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . self::$db_charset));            
+                            array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . self::$db_charset));
         }
 
         return self::$pdo_instance;
+    }
+
+    //получить префикс табиц
+    static public function getTblPrefix() {
+        $p_inst = self::getPdoInstance();
+        return self::$tbl_prefix;
     }
 
     static public function query($sql) {
@@ -75,12 +81,13 @@ abstract class M_PdoDB {
             throw new PDOException($pdo_err[2]);
         }
     }
-    
+
     //ф-я возвращает последний всталенный ИД
-    static public function getLastId () {
+    static public function getLastId() {
         $p_inst = self::getPdoInstance();
         return $p_inst->lastInsertId();
     }
+
 }
 
 ?>

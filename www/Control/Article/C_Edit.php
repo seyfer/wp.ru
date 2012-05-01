@@ -74,19 +74,21 @@ class C_Edit extends C_Base {
     }
 
     protected function OnOutput() {
+       
+
         $sm = new M_Smarty();
         //$smarty->caching = false;
-        
+
         $this->tpl_path .= $this->article_tpl_path;
         $sm->cache_id = $sm->get_cache_id($this->id_article . $this->title . $this->content . $this->message);
-        
+
         $vars = array(
             'title' => $this->title,
             'content' => $this->content,
             'id_article' => $this->id_article
-                );
+        );
         $sm->assign($vars);
-        
+
         $this->content = $sm->fetch($this->tpl_path . $this->template, $sm->cache_id);
 
         parent::OnOutput();

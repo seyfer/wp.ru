@@ -23,7 +23,7 @@ class M_Smarty extends Smarty {
         //$this->debugging = false;
 
         $this->compile_check = true;
-        $this->caching = false;
+        $this->caching = true;
         //$this->cache_modified_check = TRUE;
         $this->cache_lifetime = 3600;
     }
@@ -44,12 +44,11 @@ class M_Smarty extends Smarty {
         unset($request[session_name()]);
         return md5(serialize($request) . serialize($_SESSION));
     }
-    
+
     //получение ид по уникальным данным
-    function get_cache_id ($data) {        
+    function get_cache_id ($data) {
         return md5(md5(serialize($data)));
     }
-
 }
 
 ?>

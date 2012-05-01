@@ -10,9 +10,9 @@ $site_theme - текущая тема
 <html>
     <head>
         <title>{$title}</title>
-        <meta content="text/html; charset=utf-8" http-equiv="content-type">	
-        <link rel="stylesheet" type="text/css" media="screen" 
-              href="theme/{$site_theme}/template/style.css" /> 
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <link rel="stylesheet" type="text/css" media="screen"
+              href="theme/{$site_theme}/template/style.css" />
     </head>
     <body>
         <div class="main">
@@ -24,9 +24,9 @@ $site_theme - текущая тема
             </div>
 
             <div class="menu">
-                <a href="index.php?c=C_Index">Главная</a> |
-                <a href="index.php?c=C_Editor">Консоль редактора</a>
+                {$menu}
             </div>
+
             <div class="content">
                 {if $message}
                     <h1>{$message}</h1>

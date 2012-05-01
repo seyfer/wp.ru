@@ -7,6 +7,21 @@ require_once '/core/M_PdoDB.php';
 
 class Database {
 
+    public $tbl_prefix;
+    static private $instance = "";
+
+    function __construct() {
+
+        $this->tbl_prefix = M_PdoDB::getTblPrefix();
+    }
+
+    public static function getInstance() {
+        if (self::$instance == null)
+            self::$instance = new Database();
+
+        return self::$instance;
+    }
+
 //
 // Выборка строк
 // $query    	- полный текст SQL запроса
@@ -24,14 +39,19 @@ class Database {
                     $stmt->bindParam(":" . $k, $v);
                 }
             }
-            $stmt->execute();
 
-            $result_rows = array();
-            while ($row = $stmt->fetch()) {
-                $result_rows[] = $row;
+            if ($stmt->execute()) {
+
+                $result_rows = array();
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $result_rows[] = $row;
+                }
+
+                return $result_rows;
+            } else {
+                $err = $stmt->errorInfo();
+                throw new PDOException($err[2]);
             }
-
-            return $result_rows;
         } catch (PDOException $e) {
             echo $e;
 
@@ -92,30 +112,28 @@ class Database {
 // $object 		- ассоциативный массив с парами вида "имя столбца - значение"
 // $where		- условие массив "условие => значение"
 // результат            - число измененных строк
-//	
+//
     public function Update($table, $object, $where) {
         $sets = array();
         $wheres = array();
 
         try {
-            
-            //$i=0;
+
+            //$i=0; могло бы быть, но параметры и так разные
             foreach ($object as $key => $value) {
-                //$i++;
+
                 if ($value === null) {
                     $sets[] = "$key=NULL";
                 } else {
-                    //$sets[] = "$key=:$key" . $i;
+
                     $sets[] = "$key=:$key";
                 }
-                
             }
 
             $wi = 0;
             foreach ($where as $k => $v) {
-                //$i++;
-                //$wheres[$wi] = $k . " = " . ":$k" . $i;
-                $wheres[$wi] = $k . " = " . ":$k";
+
+                $wheres[$wi] = $k;
                 //если больше 1 параметра делаем AND
                 if (++$wi > 1) {
                     $wheres[$wi - 2] .= " AND ";
@@ -126,19 +144,22 @@ class Database {
             $where_s = implode(' ', $wheres);
 
             $query = "UPDATE $table SET $sets_s WHERE $where_s";
-            
+
             $stmt = M_PdoDB::prepare($query);
 
-            //$i=0;
+
             foreach ($object as $k => &$v) {
-                //$i++;                
-                //$stmt->bindParam(":$k" . $i, $v);
+
                 $stmt->bindParam(":$k", $v);
             }
             foreach ($where as $k => &$v) {
-                //$i++;                
-                //$stmt->bindParam(":$k" . $i, $v);
-                $stmt->bindParam(":$k", $v);
+                preg_match("/(:.*)/i", $k, $key);
+
+                //без параметра не удаляем
+                if ($key[0] == null)
+                    return false;
+
+                $stmt->bindParam($key[0], $v);
             }
 
             if (!$stmt->execute()) {
@@ -156,9 +177,9 @@ class Database {
 //
 // Удаление строк
 // $table 		- имя таблицы
-// $where		- условие (часть SQL запроса)	
+// $where		- условие (часть SQL запроса)
 // результат	- число удаленных строк
-//		
+//
     public function Delete($table, $where) {
         $wheres = array();
 
@@ -166,7 +187,7 @@ class Database {
 
             $wi = 0;
             foreach ($where as $k => $v) {
-                $wheres[$wi] = $k . " = " . ":$k ";
+                $wheres[$wi] = $k;
                 //если больше 1 параметра делаем AND
                 if (++$wi > 1) {
                     $wheres[$wi - 2] .= " AND ";
@@ -180,7 +201,13 @@ class Database {
             $stmt = M_PdoDB::prepare($query);
 
             foreach ($where as $k => $v) {
-                $stmt->bindParam(":" . $k, $v);
+                preg_match("/(:.*)/i", $k, $key);
+
+                //без параметра не удаляем
+                if ($key[0] == null)
+                    return false;
+
+                $stmt->bindParam($key[0], $v);
             }
 
             if (!$stmt->execute()) {

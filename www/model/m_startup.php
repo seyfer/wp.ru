@@ -8,21 +8,21 @@ class M_Startup {
     private $db_name = "";
     public $site_theme = "";
     public $site_root_path = "";
-    
+
     static private $instance = "";
-    
+
     static public function Instance () {
-        
+
         if (self::$instance == null) {
             self::$instance = new M_Startup();
         }
-        
-        return self::$instance;        
+
+        return self::$instance;
     }
 
     function __construct() {
 
-        include $_SERVER['DOCUMENT_ROOT'] . "/config/site_conf.php";        
+        include $_SERVER['DOCUMENT_ROOT'] . "/config/site_conf.php";
 
         $this->db_host = $db_host;
         $this->db_user = $db_user;
@@ -43,9 +43,14 @@ class M_Startup {
         // Языковая настройка.
         setlocale(LC_ALL, 'ru_RU.UTF-8');
 
+        //time()
+        $timezone = "Asia/Krasnoyarsk";
+        if(function_exists('date_default_timezone_set')) date_default_timezone_set($timezone);
+        //echo date('d-m-Y H:i:s');
+
         // Открытие сессии.
         session_start();
-        
+
         return self::Instance();
     }
 

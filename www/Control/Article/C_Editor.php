@@ -36,6 +36,11 @@ class C_Editor extends C_Base {
     protected function OnOutput() {
         $smarty = M_Smarty::getInstance();
 
+        $menu = M_Menu::Instance();
+
+        $this->menu_active = $menu->setActive('C_Editor');
+        //$this->menu_active = $this->menu_active['sort'];
+
         $vars = array(
             'articles' => $this->articles
         );
