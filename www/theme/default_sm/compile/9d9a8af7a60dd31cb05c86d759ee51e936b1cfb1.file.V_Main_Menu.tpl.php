@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-05-02 17:54:04
+<?php /* Smarty version Smarty-3.1.8, created on 2012-05-03 15:32:57
          compiled from "Z:\home\wp.ru\www\theme\default_sm\template\V_Main_Menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:57354f9faa1c02cc32-74095145%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9d9a8af7a60dd31cb05c86d759ee51e936b1cfb1' => 
     array (
       0 => 'Z:\\home\\wp.ru\\www\\theme\\default_sm\\template\\V_Main_Menu.tpl',
-      1 => 1335952443,
+      1 => 1336030336,
       2 => 'file',
     ),
   ),

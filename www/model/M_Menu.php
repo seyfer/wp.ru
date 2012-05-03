@@ -36,6 +36,7 @@ class M_Menu {
         return $menus;
     }
 
+    //получить активное меню
     public function getActive() {
 
         $query = "SELECT sort FROM " . $this->tbl_with_prefix . "
@@ -114,7 +115,7 @@ class M_Menu {
 
         $query = "SELECT id, file, author FROM mcgallery WHERE id>$id ORDER BY id LIMIT 1 ";
 
-        
+
     }
 
     public function save($menu_array) {
