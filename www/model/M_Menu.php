@@ -29,7 +29,7 @@ class M_Menu {
 
     public function all() {
 
-        $query = "SELECT * FROM " . $this->tbl_with_prefix;
+        $query = "SELECT * FROM " . $this->tbl_with_prefix . " ORDER BY SORT ASC";
 
         $menus = $this->DB->Select($query);
 
@@ -39,7 +39,7 @@ class M_Menu {
     public function getActive() {
 
         $query = "SELECT sort FROM " . $this->tbl_with_prefix . "
-            WHERE active = '1' ORDER BY SORT ASC";
+            WHERE active = '1' ";
 
         $active = $this->DB->Select($query);
 
@@ -69,12 +69,52 @@ class M_Menu {
         $this->DB->Update($this->tbl_with_prefix, $object, $where);
     }
 
+    //поднять вверх
     public function sortUp($id_menu) {
+
+        $query = "SELECT sort FROM $this->tbl_with_prefix WHERE id_menu = :id_menu ";
+
+        $object = array(
+            'id_menu' => $id_menu
+        );
+
+        $sort = $this->DB->Select($query, $object);
+
+        $sort = $sort[0]['sort'];
+
+        if ($sort <= 1) {
+            return FALSE;
+        }
+
+        $object = array(
+            'sort' => $sort
+        );
+
+        $where = array(
+            'sort < :sort ORDER BY sort ASC LIMIT 1' => $sort
+        );
+
+        $this->DB->Update($this->tbl_with_prefix, $object, $where);
+
+        $sortup = $sort - 1;
+
+        $object = array(
+            'sort' => $sortup
+        );
+
+        $where = array(
+            'id_menu = :id_menu' => $id_menu
+        );
+
+        $this->DB->Update($this->tbl_with_prefix, $object, $where);
 
     }
 
     public function sortDown($id_menu) {
 
+        $query = "SELECT id, file, author FROM mcgallery WHERE id>$id ORDER BY id LIMIT 1 ";
+
+        
     }
 
     public function save($menu_array) {
@@ -97,9 +137,7 @@ class M_Menu {
                         'id_menu = :id_menu' => $menu_item['id_menu']
                     );
 
-                    if (!$this->DB->Update($this->tbl_with_prefix, $object, $where)) {
-                        return FALSE;
-                    }
+                    $this->DB->Update($this->tbl_with_prefix, $object, $where);
 
                     $upd_cnt++;
                 }

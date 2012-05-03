@@ -144,6 +144,7 @@ class Database {
             $where_s = implode(' ', $wheres);
 
             $query = "UPDATE $table SET $sets_s WHERE $where_s";
+            //var_dump($query);
 
             $stmt = M_PdoDB::prepare($query);
 
@@ -153,7 +154,7 @@ class Database {
                 $stmt->bindParam(":$k", $v);
             }
             foreach ($where as $k => &$v) {
-                preg_match("/(:.*)/i", $k, $key);
+                preg_match("/(:[a-zA-Z_]*)/i", $k, $key);
 
                 //без параметра не удаляем
                 if ($key[0] == null)

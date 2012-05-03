@@ -34,12 +34,10 @@ class C_Menu_Editor extends C_Base {
                 $this->message = "Меню не обновлено";
             }
 
-             var_dump($cnt);
-
         } elseif ($this->IsGet()) {
 
             if ($_GET['up']) {
-
+                $menu->sortUp($_GET['up']);
             }
 
             if ($_GET['down']) {
