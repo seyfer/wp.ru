@@ -12,6 +12,9 @@ class M_Menu {
     private $table = "menu";
     private $tbl_with_prefix;
     static private $instance;
+    private $maxs;      //максимальное зн-е сортировки
+    private $sort;      //сортировка выбранного элемента
+    public $active;     //активный пункт меню
 
     static public function Instance() {
 
@@ -39,12 +42,19 @@ class M_Menu {
     //получить активное меню
     public function getActive() {
 
-        $query = "SELECT sort FROM " . $this->tbl_with_prefix . "
+        if ($this->active) {
+            return $this->active;
+        } else {
+
+            $query = "SELECT sort FROM " . $this->tbl_with_prefix . "
             WHERE active = '1' ";
 
-        $active = $this->DB->Select($query);
+            $active = $this->DB->Select($query);
 
-        return $active[0];
+            $this->active = $active[0];
+
+            return $active[0];
+        }
     }
 
     public function setActive($controller) {
@@ -73,15 +83,22 @@ class M_Menu {
     //поднять вверх
     public function sortUp($id_menu) {
 
-        $query = "SELECT sort FROM $this->tbl_with_prefix WHERE id_menu = :id_menu ";
+        if ($this->sort) {
+            $sort = $this->sort;
+        } else {
 
-        $object = array(
-            'id_menu' => $id_menu
-        );
+            $query = "SELECT sort FROM $this->tbl_with_prefix WHERE id_menu = :id_menu ";
 
-        $sort = $this->DB->Select($query, $object);
+            $object = array(
+                'id_menu' => $id_menu
+            );
 
-        $sort = $sort[0]['sort'];
+            $sort = $this->DB->Select($query, $object);
+
+            $sort = $sort[0]['sort'];
+
+            $this->sort = $sort;
+        }
 
         if ($sort <= 1) {
             return FALSE;
@@ -92,7 +109,7 @@ class M_Menu {
         );
 
         $where = array(
-            'sort < :sort ORDER BY sort ASC LIMIT 1' => $sort
+            'sort < :sort ORDER BY sort DESC LIMIT 1' => $sort
         );
 
         $this->DB->Update($this->tbl_with_prefix, $object, $where);
@@ -108,19 +125,69 @@ class M_Menu {
         );
 
         $this->DB->Update($this->tbl_with_prefix, $object, $where);
-
     }
 
+    //ф-я опускания пункта вниз
     public function sortDown($id_menu) {
 
-        $query = "SELECT id, file, author FROM mcgallery WHERE id>$id ORDER BY id LIMIT 1 ";
+        if ($this->sort) {
+            $sort = $this->sort;
+        } else {
+            $query = "SELECT sort
+                FROM $this->tbl_with_prefix
+                WHERE id_menu = :id_menu ";
 
+            $object = array(
+                'id_menu' => $id_menu
+            );
 
+            $sort = $this->DB->Select($query, $object);
+
+            $sort = $sort[0]['sort'];
+
+            $this->sort = $sort;
+        }
+
+        if ($this->maxs) {
+            $maxs = $this->maxs;
+        } else {
+            $query = "SELECT MAX(sort) AS maxs FROM $this->tbl_with_prefix";
+
+            $maxs = $this->DB->Select($query);
+
+            $maxs = $maxs[0]['maxs'];
+
+            $this->maxs = $maxs;
+        }
+
+        if ($sort >= $maxs) {
+            return FALSE;
+        }
+
+        $object = array(
+            'sort' => $sort
+        );
+
+        $where = array(
+            'sort > :sort ORDER BY sort ASC LIMIT 1' => $sort
+        );
+
+        $this->DB->Update($this->tbl_with_prefix, $object, $where);
+
+        $sortup = $sort + 1;
+
+        $object = array(
+            'sort' => $sortup
+        );
+
+        $where = array(
+            'id_menu = :id_menu' => $id_menu
+        );
+
+        $this->DB->Update($this->tbl_with_prefix, $object, $where);
     }
 
     public function save($menu_array) {
-
-        //TODO: false ??? na 2m
 
         $upd_cnt = 0;
 
@@ -149,7 +216,47 @@ class M_Menu {
         }
     }
 
-    public function add() {
+    public function add($ancor, $link) {
+
+        if ($this->maxs) {
+            $maxs = $this->maxs;
+        } else {
+            $query = "SELECT MAX(sort) AS maxs FROM $this->tbl_with_prefix";
+
+            $maxs = $this->DB->Select($query);
+
+            $maxs = $maxs[0]['maxs'];
+
+            $this->maxs = $maxs;
+            $maxs++;
+        }
+
+        $object = array(
+            'ancor' => $ancor,
+            'link' => $link,
+            'sort' => $maxs
+        );
+
+        if ( $this->DB->Insert($this->tbl_with_prefix, $object)) {
+            return true;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
+    public function delete ($id_menu) {
+
+        $where = array(
+            'id_menu = :id_menu' => $id_menu
+        );
+
+        if ($this->DB->Delete($this->tbl_with_prefix, $where)) {
+            return true;
+        }
+        else {
+            return FALSE;
+        }
 
     }
 

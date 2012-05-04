@@ -156,7 +156,7 @@ class Database {
             foreach ($where as $k => &$v) {
                 preg_match("/(:[a-zA-Z_]*)/i", $k, $key);
 
-                //без параметра не удаляем
+                //без параметра не редактируем
                 if ($key[0] == null)
                     return false;
 
@@ -202,7 +202,7 @@ class Database {
             $stmt = M_PdoDB::prepare($query);
 
             foreach ($where as $k => $v) {
-                preg_match("/(:.*)/i", $k, $key);
+                preg_match("/(:[a-zA-Z_]*)/i", $k, $key);
 
                 //без параметра не удаляем
                 if ($key[0] == null)

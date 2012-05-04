@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-05-03 15:33:03
+<?php /* Smarty version Smarty-3.1.8, created on 2012-05-04 11:59:30
          compiled from "Z:/home/wp.ru/www/theme/default_sm/template\Menu\V_Menu_Editor.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:25984f9faa1be81b56-36859257%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '195a75d48a370d8b23a43497a94a450c0df19d69' => 
     array (
       0 => 'Z:/home/wp.ru/www/theme/default_sm/template\\Menu\\V_Menu_Editor.tpl',
-      1 => 1336030336,
+      1 => 1336103965,
       2 => 'file',
     ),
   ),
@@ -32,6 +32,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </p>
 <hr>
 
+<form name="menu_add" method="post" action="?c=C_Menu_Editor">
+    <div class="editor_menu">
+        Название: <input type="text" value="<?php echo $_smarty_tpl->tpl_vars['menu']->value['ancor'];?>
+" name="ancor">
+        Ссылка: <input type="text" value="<?php echo $_smarty_tpl->tpl_vars['menu']->value['link'];?>
+" name="link">
+        <input type="submit" value="Добавить" name="add_menu">
+    </div>
+</form>
+<br><hr>
+
 <form name="menu_editor" method="post" action="?c=C_Menu_Editor">
     <ul>
         <?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
@@ -46,14 +57,15 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
                 Ссылка:     <input type="text" value="<?php echo $_smarty_tpl->tpl_vars['item']->value['link'];?>
 " name="input<?php echo $_smarty_tpl->tpl_vars['item']->value['id_menu'];?>
 [link]">
-                Сортировка: <input type="text" value="<?php echo $_smarty_tpl->tpl_vars['item']->value['sort'];?>
+                Сортировка: <input class="msort" type="text" value="<?php echo $_smarty_tpl->tpl_vars['item']->value['sort'];?>
 " name="input<?php echo $_smarty_tpl->tpl_vars['item']->value['id_menu'];?>
 [sort]">
                 <a href="?c=C_Menu_Editor&up=<?php echo $_smarty_tpl->tpl_vars['item']->value['id_menu'];?>
 ">+</a>
                 <a href="?c=C_Menu_Editor&down=<?php echo $_smarty_tpl->tpl_vars['item']->value['id_menu'];?>
 ">-</a>
-
+                <a href="?c=C_Menu_Editor&del=<?php echo $_smarty_tpl->tpl_vars['item']->value['id_menu'];?>
+">Delete</a>
                 <input type="hidden" name="input<?php echo $_smarty_tpl->tpl_vars['item']->value['id_menu'];?>
 [id_menu]" value="<?php echo $_smarty_tpl->tpl_vars['item']->value['id_menu'];?>
 ">

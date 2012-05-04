@@ -8,16 +8,16 @@ require_once '/control/C_Base.php';
 
 class C_Menu_Editor extends C_Base {
 
-    //
-    // Конструктор.
-    //
+//
+// Конструктор.
+//
     function __construct() {
         parent::__construct();
     }
 
-    //
-    // Виртуальный обработчик запроса.
-    //
+//
+// Виртуальный обработчик запроса.
+//
     protected function OnInput() {
         parent::OnInput();
 
@@ -27,13 +27,25 @@ class C_Menu_Editor extends C_Base {
 
         if ($this->IsPost()) {
 
-            if ($cnt = $menu->save($_POST)) {
-                $this->message = "Успешно сохранено";
-            }
-            else {
-                $this->message = "Меню не обновлено";
+            if ($_POST['save_menu']) {
+                if ($cnt = $menu->save($_POST)) {
+                    $this->message = "Успешно сохранено";
+                } else {
+                    $this->message = "Меню не обновлено";
+                }
             }
 
+            if ($_POST['add_menu']) {
+                if ($_POST['link'] != '' && $_POST['ancor'] != '') {
+                    if ($menu->add($_POST['ancor'], $_POST['link'])) {
+                        $this->message = "Пункт успешно добавлен!";
+                    } else {
+                        $this->message = "Ошибка добавления!";
+                    }
+                } else {
+                    $this->message = "Введены не все значения!";
+                }
+            }
         } elseif ($this->IsGet()) {
 
             if ($_GET['up']) {
@@ -41,7 +53,12 @@ class C_Menu_Editor extends C_Base {
             }
 
             if ($_GET['down']) {
+                $menu->sortDown($_GET['down']);
+            }
 
+            if ($_GET['del']) {
+                if ($menu->delete($_GET['del']))
+                    $this->message = "Успешно удалено";
             }
         }
     }

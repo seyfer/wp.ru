@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-05-01 15:38:24
+<?php /* Smarty version Smarty-3.1.8, created on 2012-05-04 11:29:18
          compiled from "Z:/home/wp.ru/www/theme/default_sm/template\Article\V_Edit.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:31584f9f92f0aa5b99-40441695%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ba7851531096023603d459e1b43aaf23684c4a9a' => 
     array (
       0 => 'Z:/home/wp.ru/www/theme/default_sm/template\\Article\\V_Edit.tpl',
-      1 => 1335235174,
+      1 => 1336030336,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_4f9f92f0b11c49_55986771',
   'variables' => 
   array (
     'id_article' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f9f92f0b11c49_55986771',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4f9f92f0b11c49_55986771')) {function content_4f9f92f0b11c49_55986771($_smarty_tpl) {?><<?php ?>? /*
 Шаблон главной страницы
