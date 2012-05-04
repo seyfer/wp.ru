@@ -11,8 +11,8 @@ $menu - массив меню
 
 <form name="menu_add" method="post" action="?c=C_Menu_Editor">
     <div class="editor_menu">
-        Название: <input type="text" value="{$menu.ancor}" name="ancor">
-        Ссылка: <input type="text" value="{$menu.link}" name="link">
+        Название: <input type="text" value="" name="ancor">
+        Ссылка: <input type="text" value="" name="link">
         <input type="submit" value="Добавить" name="add_menu">
     </div>
 </form>

@@ -8,7 +8,7 @@ require_once ('/core/Database.php');
 class M_Users {
 
     private static $instance;   // экземпляр класса
-    private $DB;              	// драйвер БД
+    private $DB;               // драйвер БД
     private $sid;               // идентификатор текущей сессии
     private $uid;               // идентификатор текущего пользователя
     private $table;
@@ -101,6 +101,7 @@ class M_Users {
     // результат	- объект пользователя
     //
 	public function Get($id_user = null) {
+
         // Если id_user не указан, берем его по текущей сессии.
         if ($id_user == null)
             $id_user = $this->GetUid();
@@ -108,10 +109,15 @@ class M_Users {
         if ($id_user == null)
             return null;
 
+        $this->table = "users";
+        $this->tbl_with_prefix = $this->DB->tbl_prefix . $this->table;
+
         // А теперь просто возвращаем пользователя по id_user.
-        $t = "SELECT * FROM users WHERE id_user = '%d'";
-        $query = sprintf($t, $id_user);
-        $result = $this->msql->Select($query);
+        $query = "SELECT * FROM $this->tbl_with_prefix WHERE id_user = :id_user";
+
+        $object['id_user'] = $id_user;
+
+        $result = $this->DB->Select($query, $object);
         return $result[0];
     }
 
@@ -119,9 +125,15 @@ class M_Users {
     // Получает пользователя по логину
     //
 	public function GetByLogin($login) {
-        $query = "SELECT * FROM users WHERE login = :login";
+        $this->table = "users";
+        $this->tbl_with_prefix = $this->DB->tbl_prefix . $this->table;
+
+        $query = "SELECT * FROM $this->tbl_with_prefix
+                WHERE login = :login";
+
         $object['login'] = $login;
-        $result = $this->DB->Select($query);
+
+        $result = $this->DB->Select($query, $object);
         return $result[0];
     }
 
@@ -151,6 +163,7 @@ class M_Users {
     // результат	- UID
     //
 	public function GetUid() {
+
         // Проверка кеша.
         if ($this->uid != null)
             return $this->uid;
@@ -161,9 +174,13 @@ class M_Users {
         if ($sid == null)
             return null;
 
-        $t = "SELECT id_user FROM sessions WHERE sid = '%s'";
-        $query = sprintf($t, mysql_real_escape_string($sid));
-        $result = $this->msql->Select($query);
+        $this->table = "sessions";
+        $this->tbl_with_prefix = $this->DB->tbl_prefix . $this->table;
+
+        $query = "SELECT id_user FROM $this->tbl_with_prefix
+                WHERE sid = :sid";
+        $object['sid'] = $sid;
+        $result = $this->DB->Select($query, $object);
 
         // Если сессию не нашли - значит пользователь не авторизован.
         if (count($result) == 0)
@@ -179,6 +196,7 @@ class M_Users {
     // результат	- SID
     //
 	private function GetSid() {
+
         // Проверка кеша.
         if ($this->sid != null)
             return $this->sid;
@@ -191,14 +209,19 @@ class M_Users {
         if ($sid != null) {
             $session = array();
             $session['time_last'] = date('Y-m-d H:i:s');
-            $t = "sid = '%s'";
-            $where = sprintf($t, mysql_real_escape_string($sid));
-            $affected_rows = $this->msql->Update('sessions', $session, $where);
+
+            $this->table = "sessions";
+            $this->tbl_with_prefix = $this->DB->tbl_prefix . $this->table;
+
+            $where["sid = :sid"] = $sid;
+            $affected_rows = $this->DB->Update($this->tbl_with_prefix, $session, $where);
 
             if ($affected_rows == 0) {
-                $t = "SELECT count(*) as cnt FROM sessions WHERE sid = '%s'";
-                $query = sprintf($t, mysql_real_escape_string($sid));
-                $result = $this->msql->Select($query);
+                $query = "SELECT count(*) AS cnt FROM $this->tbl_with_prefix
+                        WHERE sid = :sid";
+                $object['sid'] = $sid;
+
+                $result = $this->DB->Select($query, $object);
 
                 if ($result[0]['cnt'] == 0)
                     $sid = null;
@@ -227,6 +250,7 @@ class M_Users {
     // результат	- SID
     //
 	private function OpenSession($id_user) {
+
         // генерируем SID
         $sid = $this->GenerateStr(10);
 
@@ -237,7 +261,11 @@ class M_Users {
         $session['sid'] = $sid;
         $session['time_start'] = $now;
         $session['time_last'] = $now;
-        $this->msql->Insert('sessions', $session);
+
+        $this->table = "sessions";
+        $this->tbl_with_prefix = $this->DB->tbl_prefix . $this->table;
+
+        $this->DB->Insert($this->tbl_with_prefix, $session);
 
         // регистрируем сессию в PHP сессии
         $_SESSION['sid'] = $sid;

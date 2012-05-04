@@ -5,7 +5,6 @@
  */
 
 require_once('model/M_Startup.php');
-require_once('model/M_Articles.php');
 
 $start = M_Startup::startup();
 

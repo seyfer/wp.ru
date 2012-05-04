@@ -27,6 +27,10 @@ $site_theme - текущая тема
                 {$menu}
             </div>
 
+             <div class ="user_block">
+                    {$user_block}
+                </div>
+
             <div class="content">
                 {if $message}
                     <h1>{$message}</h1>
