@@ -11,11 +11,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '75744fa3a2e7312fa7-34257762',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fa3a2eb98d3a2_83832428',
+  'unifunc' => 'content_4fa3a660770060_61895458',
   'has_nocache_code' => false,
   'cache_lifetime' => 60,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4fa3a2eb98d3a2_83832428')) {function content_4fa3a2eb98d3a2_83832428($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4fa3a660770060_61895458')) {function content_4fa3a660770060_61895458($_smarty_tpl) {?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
@@ -35,14 +35,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
             <div class="menu">
                 <div class="menu">
-                        <a href="?c=C_Index" class="
-                              ">Главная</a>
-                    <a href="?c=C_Editor" class="
-                              ">Консоль редактора</a>
-                    <a href="?c=C_User_Auth" class="
-                                  active
-                              ">Авторизация</a>
-            </div>
+                                        <a href="?c=C_Index" class="
+                                      ">Главная</a>
+                                                <a href="?c=C_Editor" class="
+                                      ">Консоль редактора</a>
+                                                                    <a href="?c=C_User_Auth" class="
+                                                  active
+                                              ">Авторизация</a>
+                
+                        </div>
 
             </div>
 

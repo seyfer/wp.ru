@@ -11,11 +11,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '320234fa3a2e7a67d61-18105147',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fa3a5772cd2c9_65955938',
+  'unifunc' => 'content_4fa3a976808fb5_92595838',
   'has_nocache_code' => false,
   'cache_lifetime' => 60,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4fa3a5772cd2c9_65955938')) {function content_4fa3a5772cd2c9_65955938($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4fa3a976808fb5_92595838')) {function content_4fa3a976808fb5_92595838($_smarty_tpl) {?>
  <p>
      <a href="?c=C_Editor">Статьи</a>
      <a href="?c=C_Menu_Editor">Меню</a>

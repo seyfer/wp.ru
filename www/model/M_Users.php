@@ -144,8 +144,30 @@ class M_Users {
     // результат	- true или false
     //
 	public function Can($priv, $id_user = null) {
-        // СДЕЛАТЬ САМОСТОЯТЕЛЬНО
-        return false;
+
+        if ($id_user == null)
+            $id_user = $this->GetUid();
+
+        if ($id_user == null)
+            return false;
+
+        // Возвращаем пользователя по id_user.
+        $query = "SELECT COUNT(*) as count FROM " . $this->DB->tbl_prefix . "privs2roles
+			  JOIN " . $this->DB->tbl_prefix . "users
+			  	   ON " . $this->DB->tbl_prefix . "users.id_role = " . $this->DB->tbl_prefix . "privs2roles.id_role
+			  	   AND " . $this->DB->tbl_prefix . "users.id_user = :id_user
+			  JOIN " . $this->DB->tbl_prefix . "_privs
+			  	   ON " . $this->DB->tbl_prefix . "privs.id_priv = " . $this->DB->tbl_prefix . "privs2roles.id_priv
+			  	   AND " . $this->DB->tbl_prefix . "privs.name = :priv ";
+
+
+        $object = array(
+            'id_user' => $id_user,
+            'priv' => $priv
+        );
+        $result = $this->DB->Select($query, $object);
+
+        return (count($result) > 0);
     }
 
     //
@@ -154,8 +176,15 @@ class M_Users {
     // результат	- true если online
     //
 	public function IsOnline($id_user) {
-        // СДЕЛАТЬ САМОСТОЯТЕЛЬНО
-        return false;
+        $this->table = "session";
+        $query = "SELECT COUNT(*)
+			  FROM " . $this->DB->tbl_prefix . $this->table . "
+			  WHERE id_user = :id_user";
+
+        $object['id_user'] = $id_user;
+        $result = $this->DB->Select($query, $object);
+
+        return (count($result) > 0);
     }
 
     //
