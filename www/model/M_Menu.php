@@ -5,10 +5,13 @@
  */
 
 require_once '/core/Database.php';
+require_once '/model/M_Users.php';
 
 class M_Menu {
 
-    private $DB;
+    private $DB;        //для экземпляра БД
+    private $user;      //для экземпляра пользователя
+
     private $table = "menu";
     private $tbl_with_prefix;
     static private $instance;
@@ -27,12 +30,13 @@ class M_Menu {
 
     function __construct() {
         $this->DB = Database::getInstance();
+        $this->user = M_Users::getInstance();
         $this->tbl_with_prefix = $this->DB->tbl_prefix . $this->table;
     }
 
     public function all() {
 
-        $query = "SELECT * FROM " . $this->tbl_with_prefix . " ORDER BY SORT ASC";
+        $query = "SELECT * FROM " . $this->tbl_with_prefix . " ORDER BY sort ASC";
 
         $menus = $this->DB->Select($query);
 
@@ -83,6 +87,10 @@ class M_Menu {
     //поднять вверх
     public function sortUp($id_menu) {
 
+        if (!$this->user->Can("EDIT_MENU")) {
+            return FALSE;
+        }
+
         if ($this->sort) {
             $sort = $this->sort;
         } else {
@@ -129,6 +137,10 @@ class M_Menu {
 
     //ф-я опускания пункта вниз
     public function sortDown($id_menu) {
+
+        if (!$this->user->Can("EDIT_MENU")) {
+            return FALSE;
+        }
 
         if ($this->sort) {
             $sort = $this->sort;
@@ -189,16 +201,29 @@ class M_Menu {
 
     public function save($menu_array) {
 
+        if (!$this->user->Can("EDIT_MENU")) {
+            return FALSE;
+        }
+
         $upd_cnt = 0;
 
         if ($menu_array) {
             foreach ($menu_array as $menu_item) {
                 if (is_array($menu_item)) {
 
+                    if ($menu_item['show_m'])
+                    {
+                        $show = 1;
+                    }
+                    else {
+                        $show = 0;
+                    }
+
                     $object = array(
                         'ancor' => $menu_item['ancor'],
                         'link' => $menu_item['link'],
-                        'sort' => $menu_item['sort']
+                        'sort' => $menu_item['sort'],
+                        'show_m' => $show
                     );
 
                     $where = array(
@@ -218,6 +243,10 @@ class M_Menu {
 
     public function add($ancor, $link) {
 
+        if (!$this->user->Can("EDIT_MENU")) {
+            return FALSE;
+        }
+
         if ($this->maxs) {
             $maxs = $this->maxs;
         } else {
@@ -231,10 +260,12 @@ class M_Menu {
             $maxs++;
         }
 
+        $show = 1;
         $object = array(
             'ancor' => $ancor,
             'link' => $link,
-            'sort' => $maxs
+            'sort' => $maxs,
+            'show_m' => $show
         );
 
         if ( $this->DB->Insert($this->tbl_with_prefix, $object)) {
@@ -246,6 +277,10 @@ class M_Menu {
     }
 
     public function delete ($id_menu) {
+
+        if (!$this->user->Can("EDIT_MENU")) {
+            return FALSE;
+        }
 
         $where = array(
             'id_menu = :id_menu' => $id_menu

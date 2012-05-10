@@ -13,6 +13,7 @@ class C_Menu_Editor extends C_Base {
 //
     function __construct() {
         parent::__construct();
+        $this->needLogin = TRUE;
     }
 
 //

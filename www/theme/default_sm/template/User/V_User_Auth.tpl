@@ -28,4 +28,7 @@
         <br>
         <input type="submit" name="authorization">
     </form>
+    <br/>
+    <a href="index.php">Забыли пароль?</a>
+    <a href="?c=C_User_Reg">Регистрация</a>
 </div>

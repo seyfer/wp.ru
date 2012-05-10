@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-05-04 17:35:38
+<?php /* Smarty version Smarty-3.1.8, created on 2012-05-10 14:55:09
          compiled from "Z:/home/wp.ru/www/theme/default_sm/template\User\V_User_Auth.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:299564fa3a2ea500814-12075532%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9984df61b1f98888c1ef526d4a22e28f6cd3924e' => 
     array (
       0 => 'Z:/home/wp.ru/www/theme/default_sm/template\\User\\V_User_Auth.tpl',
-      1 => 1336120596,
+      1 => 1336631046,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'cache_lifetime' => 60,
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_4fa3a2ea558191_40400079',
   'variables' => 
   array (
     'login' => 0,
     'remember' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fa3a2ea558191_40400079',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4fa3a2ea558191_40400079')) {function content_4fa3a2ea558191_40400079($_smarty_tpl) {?>
 
@@ -52,4 +53,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <br>
         <input type="submit" name="authorization">
     </form>
+    <br/>
+    <a href="index.php">Забыли пароль?</a>
+    <a href="?c=C_User_Reg">Регистрация</a>
 </div><?php }} ?>

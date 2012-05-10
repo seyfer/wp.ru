@@ -21,7 +21,7 @@ class C_User_Auth extends C_Base {
 
         $this->page_title .= "Редактор меню";
 
-        $user = new M_Users();
+        $user = M_Users::getInstance();
 
         if ($this->IsPost()) {
 
@@ -41,6 +41,7 @@ class C_User_Auth extends C_Base {
                 }
             }
         } else {
+            //если не авторизуемся, то выходим
             $user->Logout();
         }
     }

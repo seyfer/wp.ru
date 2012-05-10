@@ -16,6 +16,7 @@ class C_Editor extends C_Base {
     //
     function __construct() {
         parent::__construct();
+        $this->needLogin = TRUE;
     }
 
     //
@@ -23,6 +24,15 @@ class C_Editor extends C_Base {
     //
     protected function OnInput() {
         parent::OnInput();
+
+        $user = M_Users::getInstance();
+
+        //можно ли заходить в консоль вообще?
+        if (!$user->Can('ENTER_EDITOR_CONSOLE')) {
+            $this->message = "Доступ запрещен";
+            header("Location: index.php");
+            die();
+        }
 
         $art = M_Articles::Instance();
         // Извлечение статей.

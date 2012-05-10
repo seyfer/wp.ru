@@ -10,10 +10,12 @@ require_once '/control/C_Base.php';
 class C_Edit extends C_Base {
 
     private $articles;
+    private $id_article;      // идентификатор статьи
     private $template = 'V_Edit.tpl';
 
     function __construct() {
         parent::__construct();
+        $this->needLogin = TRUE;
     }
 
     protected function OnInput() {
@@ -74,7 +76,7 @@ class C_Edit extends C_Base {
     }
 
     protected function OnOutput() {
-       
+
 
         $sm = new M_Smarty();
         //$smarty->caching = false;

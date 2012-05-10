@@ -34,12 +34,36 @@ class M_Users {
     }
 
     //
+    // Добавление пользователя при регистрации или в панели управления
+    //
+    public function add($login, $password, $name, $email) {
+        $this->table = "users";
+
+        $date = date('Y-m-d H:i:s', time());
+
+        $object = array(
+            'login' => $login,
+            'password' => md5($password),
+            'name' => $name,
+            'email' => $email,
+            'date' => $date
+        );
+
+        if ($last_user_id = $this->DB->Insert($this->DB->tbl_prefix . $this->table, $object)) {
+            return $last_user_id;
+        } else {
+            return FALSE;
+        }
+    }
+
+    //
     // Очистка неиспользуемых сессий
     //
     public function ClearSessions() {
         $this->table = "sessions";
         $this->tbl_with_prefix = $this->DB->tbl_prefix . $this->table;
 
+        //сессия активна 20 минут
         $min = date('Y-m-d H:i:s', time() - 60 * 20);
 
         $where = array(
@@ -151,12 +175,12 @@ class M_Users {
         if ($id_user == null)
             return false;
 
-        // Возвращаем пользователя по id_user.
+        // Возвращаем кол-во выбранных записей по id_user.
         $query = "SELECT COUNT(*) as count FROM " . $this->DB->tbl_prefix . "privs2roles
 			  JOIN " . $this->DB->tbl_prefix . "users
 			  	   ON " . $this->DB->tbl_prefix . "users.id_role = " . $this->DB->tbl_prefix . "privs2roles.id_role
 			  	   AND " . $this->DB->tbl_prefix . "users.id_user = :id_user
-			  JOIN " . $this->DB->tbl_prefix . "_privs
+			  JOIN " . $this->DB->tbl_prefix . "privs
 			  	   ON " . $this->DB->tbl_prefix . "privs.id_priv = " . $this->DB->tbl_prefix . "privs2roles.id_priv
 			  	   AND " . $this->DB->tbl_prefix . "privs.name = :priv ";
 
@@ -165,9 +189,10 @@ class M_Users {
             'id_user' => $id_user,
             'priv' => $priv
         );
+
         $result = $this->DB->Select($query, $object);
 
-        return (count($result) > 0);
+        return ($result[0]['count'] > 0);
     }
 
     //

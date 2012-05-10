@@ -123,10 +123,10 @@ class Database {
             foreach ($object as $key => $value) {
 
                 if ($value === null) {
-                    $sets[] = "$key=NULL";
+                    $sets[] = "$key = NULL";
                 } else {
 
-                    $sets[] = "$key=:$key";
+                    $sets[] = "$key = :$key";
                 }
             }
 

@@ -14,14 +14,13 @@ require_once '/model/M_Menu.php';
 
 abstract class C_Base extends Controller {
 
-    protected $id_article;      // идентификатор статьи
     protected $page_title;      // заголовок статьи
     protected $content;         // содержание статьи
     protected $start_time;      // время начала генерации страницы
     protected $message;         //сообщения
-    protected $user_block; // инфо-блок авторизованного пользователя на странице
-    protected $needLogin; // необходимость авторизации
-    protected $user;        // авторизованный пользователь
+    protected $user_block;      // инфо-блок авторизованного пользователя на странице
+    protected $needLogin;       // необходимость авторизации
+    protected $user;            // авторизованный пользователь
     protected $tpl_path;        //путь до шаблонов
     protected $article_tpl_path = "Article/";   //путь до шаблона статей
     protected $menu_tpl_path = "Menu/";
