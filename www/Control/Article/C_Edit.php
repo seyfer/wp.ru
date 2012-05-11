@@ -5,7 +5,7 @@
  *
  * @author Admin
  */
-require_once '/control/C_Base.php';
+require_once 'Control/C_Base.php';
 
 class C_Edit extends C_Base {
 

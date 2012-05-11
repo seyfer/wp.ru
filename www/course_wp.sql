@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 10, 2012 at 11:50 AM
+-- Generation Time: May 11, 2012 at 07:45 AM
 -- Server version: 5.1.40
 -- PHP Version: 5.3.3
 
@@ -32,6 +32,15 @@ CREATE TABLE IF NOT EXISTS `pro_articles` (
   PRIMARY KEY (`id_article`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=71 ;
 
+--
+-- Dumping data for table `pro_articles`
+--
+
+INSERT INTO `pro_articles` (`id_article`, `title`, `content`) VALUES
+(68, 'первая', 'первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая первая'),
+(69, 'вторая', 'вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая'),
+(70, 'третья11', 'третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья');
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +57,15 @@ CREATE TABLE IF NOT EXISTS `pro_menu` (
   PRIMARY KEY (`id_menu`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
+--
+-- Dumping data for table `pro_menu`
+--
+
+INSERT INTO `pro_menu` (`id_menu`, `link`, `ancor`, `sort`, `active`, `show_m`) VALUES
+(1, 'C_Index', 'Главная', 1, 1, 1),
+(2, 'C_Editor', 'Консоль редактора', 2, 0, 1),
+(6, 'C_User_Auth', 'Авторизация', 3, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +79,19 @@ CREATE TABLE IF NOT EXISTS `pro_privs` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
+--
+-- Dumping data for table `pro_privs`
+--
+
+INSERT INTO `pro_privs` (`id_priv`, `name`) VALUES
+(1, 'EDIT_ARTICLE'),
+(2, 'ADD_ARTICLE'),
+(3, 'EDIT_MENU'),
+(4, 'ADD_MENU'),
+(5, 'READ_ARTICLE'),
+(6, 'DELETE_ARTICLE'),
+(7, 'ENTER_EDITOR_CONSOLE');
+
 -- --------------------------------------------------------
 
 --
@@ -72,6 +103,20 @@ CREATE TABLE IF NOT EXISTS `pro_privs2roles` (
   `id_role` int(5) NOT NULL,
   PRIMARY KEY (`id_priv`,`id_role`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pro_privs2roles`
+--
+
+INSERT INTO `pro_privs2roles` (`id_priv`, `id_role`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 2),
+(6, 1),
+(7, 1),
+(7, 2);
 
 -- --------------------------------------------------------
 
@@ -86,6 +131,14 @@ CREATE TABLE IF NOT EXISTS `pro_roles` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
+--
+-- Dumping data for table `pro_roles`
+--
+
+INSERT INTO `pro_roles` (`id_role`, `name`) VALUES
+(1, 'Администратор'),
+(2, 'Пользователь');
+
 -- --------------------------------------------------------
 
 --
@@ -99,7 +152,12 @@ CREATE TABLE IF NOT EXISTS `pro_sessions` (
   `time_start` datetime NOT NULL,
   `time_last` datetime NOT NULL,
   PRIMARY KEY (`id_session`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+
+--
+-- Dumping data for table `pro_sessions`
+--
+
 
 -- --------------------------------------------------------
 
@@ -119,3 +177,11 @@ CREATE TABLE IF NOT EXISTS `pro_users` (
   UNIQUE KEY `login` (`login`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `pro_users`
+--
+
+INSERT INTO `pro_users` (`id_user`, `login`, `password`, `id_role`, `name`, `email`, `date`) VALUES
+(1, 'seyfer', 'e8be29c2c324842cfb6389e5043d5c4a', 1, 'seyfer seed', '', '0000-00-00 00:00:00'),
+(3, 'test', '098f6bcd4621d373cade4e832627b4f6', 2, 'test me', 'test@test.ru', '2012-05-10 14:56:13');

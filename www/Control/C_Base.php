@@ -6,11 +6,12 @@
  *
  * @author Seyfer
  */
-require_once '/Core/Controller.php';
-require_once '/Core/M_Smarty.php';
-require_once '/model/M_Articles.php';
-require_once '/model/M_Users.php';
-require_once '/model/M_Menu.php';
+ 
+require_once 'Core/Controller.php';
+require_once 'Core/M_Smarty.php';
+require_once 'Model/M_Articles.php';
+require_once 'Model/M_Users.php';
+require_once 'Model/M_Menu.php';
 
 abstract class C_Base extends Controller {
 

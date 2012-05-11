@@ -4,11 +4,19 @@
  * index - main controller
  */
 
-require_once('model/M_Startup.php');
+//какие ошибки
+ini_set('error_reporting', E_ALL ^ E_NOTICE);
+//показывать или нет
+ini_set('display_errors', 1);
+
+//$m_path = $_SERVER['DOCUMENT_ROOT'] . '/Model/';
+//$c_path = $_SERVER['DOCUMENT_ROOT'] . '/Control/'
+
+require_once 'Model/M_Startup.php';
 
 $start = M_Startup::startup();
 
-$c_dirs = $start->getSubDirNames($_SERVER['DOCUMENT_ROOT'] . '/Control');
+$c_dirs = $start->getSubDirNames('Control/');
 
 $controller = ($_GET['c'] != '') ? $_GET['c'] : 'C_Index';
 
@@ -34,7 +42,7 @@ try {
     $controller = 'C_Index';
 }
 
-include ("/control/$success_dir/$controller.php");
+require ("Control/$success_dir/$controller.php");
 
 $controller = new $controller();
 

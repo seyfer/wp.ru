@@ -1,3 +1,6 @@
+Order Deny,Allow
+Allow from all
+
 AddDefaultCharset utf-8
 AddCharset utf-8 *
 <IfModule mod_charset.c>

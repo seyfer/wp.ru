@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-require_once '/control/C_Base.php';
+require_once 'Control/C_Base.php';
 
 class C_User_Auth extends C_Base {
 
