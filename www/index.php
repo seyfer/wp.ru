@@ -14,34 +14,41 @@ ini_set('display_errors', 1);
 
 require_once 'Model/M_Startup.php';
 
+//стартуем начальные параметры
 $start = M_Startup::startup();
 
+//получаем директории из контроллера
 $c_dirs = $start->getSubDirNames('Control/');
 
+//если контроллер не передан - по умолчанию
 $controller = ($_GET['c'] != '') ? $_GET['c'] : 'C_Index';
 
 try {
 
     $success = 0;
     foreach ($c_dirs as $c_dir) {
+        //перебираем папки, ищем файл
         $fhandle = @fopen($_SERVER['DOCUMENT_ROOT'] . "/Control/$c_dir/$controller.php", "r");
 
         if ($fhandle) {
+            //нашли, запоминаем где
             $success++;
             $success_dir = $c_dir;
         }
 
         @fclose($fhandle);
     }
-    //Попробуем открыть файл:
+    //не нашли, кидаем эксепшн
     if ($success == 0) {
         throw new Exception();
     }
 } catch (Exception $e) {
+    //по умолчанию
     $success_dir = "Article";
     $controller = 'C_Index';
 }
 
+//вызываем таки контроллер
 require ("Control/$success_dir/$controller.php");
 
 $controller = new $controller();

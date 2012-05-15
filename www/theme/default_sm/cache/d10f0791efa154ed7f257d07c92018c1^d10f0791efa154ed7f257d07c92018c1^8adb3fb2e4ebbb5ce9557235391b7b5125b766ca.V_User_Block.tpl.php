@@ -11,11 +11,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '277104fab6b4d45ea05-53184861',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fac8cba674415_80892867',
+  'unifunc' => 'content_4fac981b462016_82620208',
   'has_nocache_code' => false,
   'cache_lifetime' => 60,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4fac8cba674415_80892867')) {function content_4fac8cba674415_80892867($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4fac981b462016_82620208')) {function content_4fac981b462016_82620208($_smarty_tpl) {?>
     <div id="user_block">
         Вы вошли как <b>seyfer seed</b>, <a href="index.php?c=C_User_Auth">выйти</a>
     </div>

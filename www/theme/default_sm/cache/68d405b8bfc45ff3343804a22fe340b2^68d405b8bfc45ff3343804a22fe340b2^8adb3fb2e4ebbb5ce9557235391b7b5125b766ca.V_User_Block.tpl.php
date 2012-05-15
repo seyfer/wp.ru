@@ -11,11 +11,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '150854fa3a2eb8e4f63-56899506',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fac924acfe3e2_29640897',
+  'unifunc' => 'content_4fac97c9efe213_06860937',
   'has_nocache_code' => false,
   'cache_lifetime' => 60,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4fac924acfe3e2_29640897')) {function content_4fac924acfe3e2_29640897($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4fac97c9efe213_06860937')) {function content_4fac97c9efe213_06860937($_smarty_tpl) {?>
     <div id="user_block">Вы неавторизованы, <a href="index.php?c=C_User_Auth">войти</a>
     </div>
 <?php }} ?>

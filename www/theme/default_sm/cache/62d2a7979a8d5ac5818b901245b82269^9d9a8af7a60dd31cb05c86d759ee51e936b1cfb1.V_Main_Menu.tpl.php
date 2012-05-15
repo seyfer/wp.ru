@@ -12,10 +12,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'nocache_hash' => '315764fa3a2e71b69a3-49139806',
   'cache_lifetime' => 60,
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fac8cb1aaf105_20472484',
+  'unifunc' => 'content_4fac97cb123c81_20163180',
   'has_nocache_code' => false,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4fac8cb1aaf105_20472484')) {function content_4fac8cb1aaf105_20472484($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4fac97cb123c81_20163180')) {function content_4fac97cb123c81_20163180($_smarty_tpl) {?>
 <div class="menu">
                                                             <a href="?c=C_Index" class="
                                               ">Главная</a>

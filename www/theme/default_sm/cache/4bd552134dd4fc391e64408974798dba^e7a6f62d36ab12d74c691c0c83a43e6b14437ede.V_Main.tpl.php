@@ -11,15 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '75744fa3a2e7312fa7-34257762',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fac98517fc3c4_64446247',
+  'unifunc' => 'content_4fac981b4b5d74_42330220',
   'has_nocache_code' => false,
   'cache_lifetime' => 60,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4fac98517fc3c4_64446247')) {function content_4fac98517fc3c4_64446247($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4fac981b4b5d74_42330220')) {function content_4fac981b4b5d74_42330220($_smarty_tpl) {?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>Веб Гуру::Редактор меню</title>
+        <title>Веб Гуру::третья11</title>
         <meta content="text/html; charset=utf-8" http-equiv="content-type">
         <link rel="stylesheet" type="text/css" media="screen"
               href="theme/default_sm/template/style.css" />
@@ -36,6 +36,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <div class="menu">
                 <div class="menu">
                                                             <a href="?c=C_Index" class="
+                                                  active
                                               ">Главная</a>
                                                                                     <a href="?c=C_Editor" class="
                                               ">Консоль редактора</a>
@@ -51,32 +52,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </div>
 
             <div class="content">
-                                <h3 align = "center">Авторизация</h3>
+                                <?php echo '<?'; ?> /*
+  Шаблон одной статьи
+  =======================
+  $article - массив статьи
 
-<div class="auth_form" align="center">
-    <form method="post" name="auth_form" action="?c=C_User_Auth" class="auth_form" >
-        <label>
-            Логин:&nbsp;
-            <input type="text" name="login" value="">
-        </label>
+  статья:
+  id_article - идентификатор
+  title - заголвок
+  content - текст
+ */ <?php echo '?>'; ?> 
+<ul>	
+   
+            <h3>третья11</h3>
         <br>
-        <label>
-            Пароль:
-            <input type="password" name="password">
-        </label>
-        <br>
-        <label>
-            Запомнить?
-            <input type="checkbox" name="remember"
-                                      >
-        </label>
-        <br>
-        <input type="submit" name="authorization">
-    </form>
-    <br/>
-    <a href="index.php">Забыли пароль?</a>
-    <a href="?c=C_User_Reg">Регистрация</a>
-</div>
+        <p>
+            третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья третья
+        </p>                    
+    
+</ul>
             </div>
         </div>
 

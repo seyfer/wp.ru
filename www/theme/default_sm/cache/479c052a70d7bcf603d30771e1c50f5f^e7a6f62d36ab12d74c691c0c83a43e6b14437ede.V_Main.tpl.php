@@ -11,15 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '75744fa3a2e7312fa7-34257762',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fac98517fc3c4_64446247',
+  'unifunc' => 'content_4fac9859dcf666_63114329',
   'has_nocache_code' => false,
   'cache_lifetime' => 60,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4fac98517fc3c4_64446247')) {function content_4fac98517fc3c4_64446247($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4fac9859dcf666_63114329')) {function content_4fac9859dcf666_63114329($_smarty_tpl) {?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>Веб Гуру::Редактор меню</title>
+        <title>Веб Гуру::Главная страница</title>
         <meta content="text/html; charset=utf-8" http-equiv="content-type">
         <link rel="stylesheet" type="text/css" media="screen"
               href="theme/default_sm/template/style.css" />
@@ -36,6 +36,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <div class="menu">
                 <div class="menu">
                                                             <a href="?c=C_Index" class="
+                                                  active
                                               ">Главная</a>
                                                                                     <a href="?c=C_Editor" class="
                                               ">Консоль редактора</a>
@@ -45,38 +46,38 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
              <div class ="user_block">
                         <div id="user_block">
-        Вы вошли как <b>seyfer seed</b>, <a href="index.php?c=C_User_Auth">выйти</a>
+        Вы вошли как <b>test me</b>, <a href="index.php?c=C_User_Auth">выйти</a>
     </div>
 
                 </div>
 
             <div class="content">
-                                <h3 align = "center">Авторизация</h3>
-
-<div class="auth_form" align="center">
-    <form method="post" name="auth_form" action="?c=C_User_Auth" class="auth_form" >
-        <label>
-            Логин:&nbsp;
-            <input type="text" name="login" value="">
-        </label>
-        <br>
-        <label>
-            Пароль:
-            <input type="password" name="password">
-        </label>
-        <br>
-        <label>
-            Запомнить?
-            <input type="checkbox" name="remember"
-                                      >
-        </label>
-        <br>
-        <input type="submit" name="authorization">
-    </form>
-    <br/>
-    <a href="index.php">Забыли пароль?</a>
-    <a href="?c=C_User_Reg">Регистрация</a>
-</div>
+                                <ul>   
+                        <li>
+                <a href="index.php?c=C_Article&id=70">
+                    третья11
+                </a>
+                <p>                   
+                    третья третья третья третья третья третья третья третья третья третья третья третья третья...
+                </p>
+            </li>
+                    <li>
+                <a href="index.php?c=C_Article&id=69">
+                    вторая
+                </a>
+                <p>                   
+                    вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая вторая...
+                </p>
+            </li>
+                    <li>
+                <a href="index.php?c=C_Article&id=68">
+                    первая
+                </a>
+                <p>                   
+                    первая первая первая первая первая первая первая первая первая первая первая первая первая...
+                </p>
+            </li>
+            </ul>
             </div>
         </div>
 

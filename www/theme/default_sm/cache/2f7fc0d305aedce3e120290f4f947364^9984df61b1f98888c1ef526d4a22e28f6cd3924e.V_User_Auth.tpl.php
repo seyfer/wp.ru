@@ -12,10 +12,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'nocache_hash' => '299564fa3a2ea500814-12075532',
   'cache_lifetime' => 60,
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fac8cb1a6d941_81819936',
+  'unifunc' => 'content_4fac98517a1520_97690580',
   'has_nocache_code' => false,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4fac8cb1a6d941_81819936')) {function content_4fac8cb1a6d941_81819936($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4fac98517a1520_97690580')) {function content_4fac98517a1520_97690580($_smarty_tpl) {?>
 <h3 align = "center">Авторизация</h3>
 
 <div class="auth_form" align="center">

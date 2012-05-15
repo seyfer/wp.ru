@@ -11,11 +11,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '271924fab6690a845f0-06810138',
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4fab744adb8382_01757932',
+  'unifunc' => 'content_4fac9859d7b624_96155308',
   'has_nocache_code' => false,
   'cache_lifetime' => 60,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4fab744adb8382_01757932')) {function content_4fab744adb8382_01757932($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_4fac9859d7b624_96155308')) {function content_4fac9859d7b624_96155308($_smarty_tpl) {?>
     <div id="user_block">
         Вы вошли как <b>test me</b>, <a href="index.php?c=C_User_Auth">выйти</a>
     </div>
